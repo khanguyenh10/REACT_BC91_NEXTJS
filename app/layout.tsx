@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
-
+import { Provider } from "react-redux";
+import { store } from "./(redux)/store";
+import LoadRedux from "./(component)/LoadRedux";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,7 +41,10 @@ export default function RootLayout({
       </head>
 
       <body>
-        {children}
+        <LoadRedux>
+          {children}
+        </LoadRedux>
+        {/* </Provider> */}
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossOrigin="anonymous"></Script>
       </body>
 

@@ -1,6 +1,7 @@
 // "use client"
 import Image from 'next/image'
 import Goto from '../(component)/Goto';
+import Link from 'next/link';
 type Props = {
   children?: React.ReactNode
 }
@@ -11,6 +12,7 @@ const getAllProductApi = async () => {
     const res = await fetch("https://apistore.cybersoft.edu.vn/api/Product");
     const data = await res.json();
     return data.content;
+
   } catch (error) {
     console.error("Error fetching products:", error);
     return [];
@@ -55,7 +57,7 @@ const page = async (props: Props) => {
                 <div className="card-body">
                   <h5 className="card-title">{item.name}</h5>
                   <p className="card-text">{item.price}</p>
-                  <button className='btn btn-primary'>View detail</button>
+                  <Link href={`detail/${item.id}`} className='btn btn-primary'>View detail</Link>
                 </div>
               </div>
             </div>
