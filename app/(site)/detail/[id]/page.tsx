@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { ResponseData } from '@/app/(ViewModel)/ResponseData';
 import { ProductVM } from '@/app/(ViewModel)/ProductVM';
 import React from 'react'
@@ -19,10 +20,56 @@ const getProductDetailById = async (id: string): Promise<ResponseData<ProductVM>
         return null;
     }
 }
-
 type Props = {
     params: Promise<{ id: string }> | { id: string }
 }
+
+export async function generateMetadata(
+    props: Props,
+): Promise<Metadata> {
+    const { id } = await props.params;
+    const response = await getProductDetailById(id);
+    const prodDetail = response?.content || ({} as ProductVM);
+    const product = prodDetail;
+    if (!product) {
+        return {
+            title: 'Sản phẩm không tồn tại | Kha Bootcampe FE 91',
+            description: 'Chi tiết sản phẩm không tìm thấy.',
+        };
+    }
+
+    const title = `${product.name} | Kha Bootcampe FE 91`;
+    const description = product.shortDescription || product.description || 'Xem chi tiết sản phẩm tại Kha Bootcampe FE 91.';
+    const image = product.image || 'https://via.placeholder.com/1200x630?text=Kha+Bootcampe+FE+91';
+
+    return {
+        title,
+        description,
+        keywords: [product.name, 'giày', 'shoes', 'bootcamp', 'FE91', ...(product.categories?.map((cat) => cat.category) || [])],
+        openGraph: {
+            title,
+            description,
+            type: 'website',
+            url: `https://yoursite.com/detail/${id}`,
+            images: [
+                {
+                    url: image,
+                    width: 1200,
+                    height: 630,
+                    alt: product.name,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: [image],
+        },
+    };
+}
+
+
 
 const page = async (props: Props) => {
     const { id } = await props.params;

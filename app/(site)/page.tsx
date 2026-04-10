@@ -2,6 +2,41 @@
 import Image from 'next/image'
 import Goto from '../(component)/Goto';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Kha Bootcampe FE 91',
+  description: 'Khám phá bộ sưu tập giày thời trang chất lượng cao với giá cạnh tranh. Từ giày thể thao đến giày lười, tất cả các loại giày bạn cần được tìm thấy tại Shoes Store.',
+  keywords: ['giày', 'shoes', 'thời trang', 'bootcamp', 'fe91'],
+  authors: [{ name: 'Shoes Store Bootcamp FE 91' }],
+  openGraph: {
+    type: 'website',
+    locale: 'vi_VN',
+    url: 'https://yoursite.com',
+    siteName: 'Shoes Store Bootcamp FE 91',
+    title: 'Kha Bootcampe FE 91',
+    description: 'Khám phá bộ sưu tập giày thời trang chất lượng cao với giá cạnh tranh. Từ giày thể thao đến giày lười, tất cả các loại giày bạn cần được tìm thấy tại Shoes Store.',
+    images: [
+      {
+        url: 'https://apistore.cybersoft.edu.vn/images/van-old-school.png',
+        width: 1200,
+        height: 630,
+        alt: 'Shoes Store Bootcamp FE 91',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kha Bootcampe FE 91',
+    description: 'Khám phá bộ sưu tập giày thời trang chất lượng cao với giá cạnh tranh.',
+    images: ['https://apistore.cybersoft.edu.vn/images/van-old-school.png'],
+  },
+}
+
+
+
 type Props = {
   children?: React.ReactNode
 }
