@@ -1,5 +1,6 @@
 import React from 'react'
 import HeaderHome from '../(component)/HeaderHome';
+import FooterHome from '../(component)/FooterHome';
 
 type Props = {
     children?: React.ReactNode;
@@ -8,9 +9,9 @@ type Props = {
 const layout = (props: Props) => {
     return (
         <div>
-            {/* sử dụng bootstrap 5 navbar để tạo menu header */}
             <HeaderHome />
             {props.children}
+            <FooterHome />
         </div>
     )
 }
