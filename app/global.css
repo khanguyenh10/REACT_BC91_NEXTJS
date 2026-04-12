@@ -4,6 +4,17 @@
 
 @theme {
     --font-sans: var(--font-open-sans), sans-serif;
+}
 
+* {
+    box-sizing: border-box;
+}
 
+input, select {
+    @apply border-none outline-none ring-0 shadow-none;
+}
+
+input:hover, select:hover,
+input:focus, select:focus {
+    @apply outline-none ring-0 shadow-none;
 }

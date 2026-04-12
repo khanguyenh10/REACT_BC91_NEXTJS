@@ -18,13 +18,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="light"
       className={`${openSans.variable} `}
     >
       <head>
 
       </head>
 
-      <body className=" antialiased">
+      <body className=" bg-white">
         {children}
 
       </body>

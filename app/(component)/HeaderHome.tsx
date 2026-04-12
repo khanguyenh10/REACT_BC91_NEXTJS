@@ -34,7 +34,7 @@ const HeaderHome = (props: Props) => {
                     <div className="bg-white text-black rounded-full px-3 py-3 flex items-center gap-2">
                         <UserIcon className="w-5 h-5" />
                     </div>
-                    <ul className="dropdown-content menu bg-base-100 text-black rounded-box z-1 w-52 p-2 shadow-sm">
+                    <ul className="dropdown-content menu bg-white text-black rounded-box z-1 w-52 p-2 shadow-sm">
                         <li><button> Đăng nhập </button></li>
                         <li><button> Đăng ký </button></li>
                     </ul>
