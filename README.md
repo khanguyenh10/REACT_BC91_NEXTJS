@@ -52,6 +52,23 @@ import "react-toastify/dist/ReactToastify.css";
 <ToastContainer />
 ```
 
+## Redux-Redux Tookit
+```js
+//1. setup 
+npm install @reduxjs/toolkit react-redux
+//2. config
+import { configureStore } from "@reduxjs/toolkit";
+
+export const store = configureStore({
+    reducer: {
+        // sẽ add reducer vào đây
+    },
+});
+
+// type cho TS
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+```
 
 ## Quy tắc 
 Quy tắc đặt tên: tên biến (camel Case), tên hàm (camel Case), tên class (Pascal Case)

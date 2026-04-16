@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Image from 'next/image';
 import React from 'react'
-import Location from '../(component)/Location';
+import Location from './component/Location';
 
 type Props = {}
 
@@ -25,7 +25,7 @@ const page = (props: Props) => {
         {/* SEARCH BAR */}
         <div className="absolute top-[80px] md:top-[100px] left-1/2 -translate-x-1/2 w-full px-4 md:px-0 md:w-auto">
 
-          <div className="bg-white rounded-full shadow-xl flex flex-col md:flex-row overflow-hidden">
+          <div className="bg-white rounded-full shadow-xl flex flex-col md:flex-row">
 
             {/* Địa điểm */}
             <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-56">
