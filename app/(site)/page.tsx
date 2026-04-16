@@ -1,6 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Image from 'next/image';
 import React from 'react'
+import Location from '../(component)/Location';
 
 type Props = {}
 
@@ -29,12 +30,7 @@ const page = (props: Props) => {
             {/* Địa điểm */}
             <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-56">
               <p className="text-md font-semibold text-black mb-1">Địa điểm</p>
-              <select defaultValue="Bạn sắp đi đâu?" className="select bg-white text-gray-500 p-0 ">
-                <option disabled={true} value={'Bạn sắp đi đâu?'} >Bạn sắp đi đâu?</option>
-                <option value={'Inter'}>Inter</option>
-                <option value={'Poppins'}>Poppins</option>
-                <option value={'Raleway'}>Raleway</option>
-              </select>
+              <Location />
             </div>
 
             {/* Nhận phòng */}
@@ -181,8 +177,6 @@ const page = (props: Props) => {
 
       </section>
     </div>
-
-
   );
 }
 

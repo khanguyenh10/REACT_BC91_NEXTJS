@@ -40,6 +40,19 @@ npm i -D daisyui@latest
 npm i @heroicons/react
 ```
 
+## Toastify
+```js
+// 1-cài đặt
+npm install react-toastify
+
+// 2- sử dụng
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// trong App
+<ToastContainer />
+```
+
+
 ## Quy tắc 
 Quy tắc đặt tên: tên biến (camel Case), tên hàm (camel Case), tên class (Pascal Case)
 Chia chuẩn thư mục

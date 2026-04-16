@@ -18,3 +18,7 @@ input:hover, select:hover,
 input:focus, select:focus {
     @apply outline-none ring-0 shadow-none;
 }
+
+option::checkmark {
+    display: none;
+}

@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images:{
-    domains:["picsum.photos", "i.pravatar.cc", "apistore.cybersoft.edu.vn"],
+    domains:["picsum.photos", "i.pravatar.cc", "airbnbnew.cybersoft.edu.vn", 'avatarngau.sbs'],
     remotePatterns:[
       {
         protocol:"https",
@@ -19,9 +19,15 @@ const nextConfig: NextConfig = {
         port:"",
         pathname:"**"
       },
+        {
+          protocol:"https",
+          hostname:"airbnbnew.cybersoft.edu.vn",
+          port:"",
+          pathname:"**"
+      },
       {
         protocol:"https",
-        hostname:"apistore.cybersoft.edu.vn",
+        hostname:"avatarngau.sbs",
         port:"",
         pathname:"**"
       }
