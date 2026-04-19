@@ -1,7 +1,10 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Image from 'next/image';
 import React from 'react'
-import Location from './component/Location';
+import Book from '@/(site)/component/Book';
+import Location from '@/(site)/component/Location';
+import SearchLocation from '@/(site)/component/SearchLocation';
+
 
 type Props = {}
 
@@ -33,22 +36,7 @@ const page = (props: Props) => {
               <Location />
             </div>
 
-            {/* Nhận phòng */}
-            <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-42">
-              <p className="text-md font-semibold text-black mb-1">Nhận phòng</p>
-              <input type="date" className="input text-sm text-gray-500 p-0 " placeholder='Thêm ngày' />
-            </div>
-
-            {/* Trả phòng */}
-            <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-42">
-              <p className="text-md font-semibold text-black mb-1">Trả phòng</p>
-              <input type="date" className="input text-sm text-gray-500 p-0 " placeholder='Thêm ngày' />
-            </div>
-            {/* Khách */}
-            <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-42">
-              <p className="text-md font-semibold text-black mb-1">Khách</p>
-              <input type="number" className="input  text-sm text-gray-500 p-0 " placeholder='Số lượng khách' min="1" />
-            </div>
+            <Book />
             <div className="px-6 py-3 flex justify-between items-center w-full md:w-20">
               <button className="btn btn-circle bg-red-500 border-none text-white">
                 <MagnifyingGlassIcon className="w-5 h-5" />
@@ -67,70 +55,8 @@ const page = (props: Props) => {
           <h2 className="text-xl md:text-2xl font-semibold mb-6">
             Khám phá những điểm đến gần đây
           </h2>
+          <SearchLocation />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              {
-                name: "Thành phố Hồ Chí Minh",
-                time: "15 phút lái xe",
-                img: "ho-chi-minh",
-              },
-              {
-                name: "Cần Thơ",
-                time: "3 giờ lái xe",
-                img: "can-tho",
-              },
-              {
-                name: "Nha Trang",
-                time: "6.5 giờ lái xe",
-                img: "nha-trang",
-              },
-              {
-                name: "Phú Quốc",
-                time: "5 giờ lái xe",
-                img: "phu-quoc",
-              },
-              {
-                name: "Thành phố Tuy Hòa",
-                time: "5 giờ lái xe",
-                img: "tuy-hoa",
-              },
-              {
-                name: "Thành phố Biên Hòa",
-                time: "45 phút lái xe",
-                img: "bien-hoa",
-              },
-              {
-                name: "Thị xã Long An",
-                time: "2 giờ lái xe",
-                img: "long-an",
-              },
-              {
-                name: "Vũng Tàu",
-                time: "2 giờ lái xe",
-                img: "vung-tau",
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-4 cursor-pointer hover:bg-gray-100 p-2 rounded-xl transition"
-              >
-                <img
-                  src={`https://source.unsplash.com/100x100/?${item.img}`}
-                  className="w-16 h-16 rounded-xl object-cover"
-                />
-
-                <div>
-                  <p className="font-medium text-sm md:text-base">
-                    {item.name}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    {item.time}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
       </section>
@@ -144,30 +70,33 @@ const page = (props: Props) => {
             {[
               {
                 title: "Toàn bộ nhà",
-                img: "modern-house",
+                img: "/noi-1.jpg",
               },
               {
                 title: "Chỗ ở độc đáo",
-                img: "unique-house",
+                img: "/noi-2.jpg",
               },
               {
                 title: "Trang trại và thiên nhiên",
-                img: "farm-house",
+                img: "/noi-3.jpg",
               },
               {
                 title: "Cho phép mang theo thú cưng",
-                img: "dog-home",
+                img: "/noi-4.jpg",
               },
             ].map((item, i) => (
               <div key={i} className="cursor-pointer">
                 <div className="overflow-hidden rounded-2xl">
-                  <img
-                    src={`https://source.unsplash.com/600x400/?${item.img}`}
+                  <Image
+                    alt={item.title}
+                    width={400}
+                    height={300}
+                    src={`${item.img}`}
                     className="w-full h-[160px] md:h-[200px] object-cover hover:scale-105 transition duration-300"
                   />
                 </div>
 
-                <p className="mt-3 text-[15px] font-medium">
+                <p className="mt-3 text-[15px] font-semibold">
                   {item.title}
                 </p>
               </div>

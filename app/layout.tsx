@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import Script from "next/script";
 import "./global.css";
 import { ToastContainer } from "react-toastify";
+import LoadRedux from "./(component)/shared/LoadRedux";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -27,7 +28,9 @@ export default function RootLayout({
       </head>
 
       <body className=" bg-white">
-        {children}
+        <LoadRedux>
+          {children}
+        </LoadRedux>
         <ToastContainer />
       </body>
 

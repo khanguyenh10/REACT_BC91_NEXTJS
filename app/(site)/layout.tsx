@@ -1,6 +1,6 @@
 import React from 'react'
-import HeaderHome from '../(component)/HeaderHome';
-import FooterHome from '../(component)/FooterHome';
+import HeaderHome from '../(component)/layout/HeaderHome';
+import FooterHome from '../(component)/layout/FooterHome';
 
 type Props = {
     children?: React.ReactNode;

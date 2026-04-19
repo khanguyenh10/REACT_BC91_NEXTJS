@@ -4,12 +4,14 @@
 //       "tinhThanh": "Hồ Chí Minh",
 //       "quocGia": "Việt Nam",
 //       "hinhAnh": "https://airbnbnew.cybersoft.edu.vn/images/vt1.jpg"
+
+import { LocationVM } from "./LocationVM";
+
 //     },
-export interface LocationVM {
-    id: number;
-    tenViTri: string;
-    tinhThanh: string;
-    quocGia: string;
-    hinhAnh: string;
-    time?: string;
+export interface SearchLocationVM {
+    "pageIndex": number;
+    "pageSize": number;
+    "totalRow": number;
+    "keywords": null | string,
+    "data": LocationVM[];
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { LocationVM } from "@/app/(viewModel)/LocationVM";
+import { LocationVM } from "@/(viewModel)/LocationVM";
 import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import { useState } from "react";
@@ -13,7 +13,7 @@ export default function LocationDropdown({ locations }: { locations: LocationVM[
             <div
                 tabIndex={0}
                 role="button"
-                className="btn w-full justify-between border-0 bg-white  shadow-none hover:shadow-none pl-0 "
+                className="btn w-full justify-between border-0 bg-white text-gray-500 shadow-none hover:shadow-none pl-0 "
             >
                 {selected || "Bạn sắp đi đâu?"}
                 <span>
@@ -38,7 +38,7 @@ export default function LocationDropdown({ locations }: { locations: LocationVM[
                                 height={125}
                                 className="w-10 h-10 rounded-full object-cover"
                             />
-                            <span className="location-name">{loc.tenViTri}</span>
+                            <span className="location-name text-gray-500">{loc.tenViTri}</span>
 
                         </button>
                     </li>

@@ -15,6 +15,9 @@ export async function fetcher(url: string, options?: RequestInit) {
             tokenCybersoft: TOKENCYBERSOFT,
             'Content-Type': 'application/json',
         },
+        cache: 'force-cache',
+        next: { revalidate: 120 }, // Tự động revalidate sau 60 giây
+
     });
     // token hết hạn hoặc fake thì trả về 401, xóa token đi
     if (res.status === 401) {

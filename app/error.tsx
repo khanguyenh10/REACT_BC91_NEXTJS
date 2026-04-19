@@ -9,7 +9,7 @@ export default function Error({
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 py-10 text-base-content">
-            <div className="w-full max-w-3xl rounded-[2rem] border border-base-300 bg-white/95 p-8  backdrop-blur-xl dark:bg-slate-900/95">
+            <div className="w-full max-w-3xl rounded-[2rem] border border-base-300 bg-white/95 p-8  backdrop-blur-xl">
                 <div className="mb-8 flex flex-col gap-4">
                     <div className="inline-flex items-center gap-2 rounded-full bg-error/10 px-4 py-2 text-error">
                         <span className="text-sm font-semibold">Lỗi hệ thống</span>
@@ -22,7 +22,7 @@ export default function Error({
                     </div>
                 </div>
 
-                <div className="rounded-3xl border border-base-300 bg-base-100 p-6 dark:bg-slate-800">
+                <div className="rounded-3xl border border-base-300 bg-base-100 p-6 ">
                     <div className="mb-4">
                         <p className="text-sm font-semibold uppercase tracking-wider text-primary">Chi tiết lỗi</p>
                     </div>

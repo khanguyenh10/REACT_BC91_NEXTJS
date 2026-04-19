@@ -6,6 +6,11 @@ Axios
 Redux 
 HeroIcon
 
+## Link 
+https://airbnbnew.cybersoft.edu.vn/swagger/index.html
+
+
+
 ## Getting Started
 
 npm run dev
@@ -68,6 +73,14 @@ export const store = configureStore({
 // type cho TS
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+```
+
+##  Day.js
+```js
+//1. setup
+npm install dayjs
+//2. config
+dayjs(date).format('DD/MM/YYYY HH:mm');
 ```
 
 ## Quy tắc 
