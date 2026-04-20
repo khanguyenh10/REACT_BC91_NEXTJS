@@ -9,7 +9,7 @@ import { stringToSlug } from '@/utils/text';
 
 type Props = {}
 
-const SearchLocation = async (props: Props) => {
+const LocationSearch = async (props: Props) => {
     const response = await getSearchLocations(1, 8, '');;
     let locations = response?.content.data as LocationVM[];
     locations = locations.map((item, index) => {
@@ -59,4 +59,4 @@ const SearchLocation = async (props: Props) => {
     )
 }
 
-export default SearchLocation
+export default LocationSearch

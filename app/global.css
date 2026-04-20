@@ -4,6 +4,7 @@
 
 @theme {
     --font-sans: var(--font-open-sans), sans-serif;
+    --breakpoint-xl: 1536px;
 }
 
 * {
@@ -21,4 +22,20 @@ input:focus, select:focus {
 
 option::checkmark {
     display: none;
+}
+
+/* Chrome, Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.container {
+    @apply max-w-screen-xl mx-auto px-4;
 }

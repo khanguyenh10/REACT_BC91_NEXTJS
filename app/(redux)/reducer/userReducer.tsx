@@ -6,9 +6,11 @@ export interface UserState { // dùng interface để dễ dàng mở rộng sau
         toDate: string,
     },
     user: any,
-    locatedAt: string,
+    locatedAt: {
+        id: number | null,
+        tinhThanh: string | null,
+    },
     numberOfGuests: number,
-
 }
 
 const initialState: UserState = {
@@ -17,7 +19,10 @@ const initialState: UserState = {
         toDate: '',
     },
     user: null,
-    locatedAt: '',
+    locatedAt: {
+        id: null,
+        tinhThanh: null,
+    },
     numberOfGuests: 1,
 }
 
@@ -28,8 +33,9 @@ const userReducer = createSlice({
         setUser: (state: UserState, action: PayloadAction<any>) => {
             state.user = action.payload
         },
-        setLocatedAt: (state: UserState, action: PayloadAction<string>) => {
-            state.locatedAt = action.payload
+        setLocatedAt: (state: UserState, action: PayloadAction<{ id: number | null, tinhThanh: string | null }>) => {
+            state.locatedAt.id = action.payload.id
+            state.locatedAt.tinhThanh = action.payload.tinhThanh
         },
         setNumberOfGuests: (state: UserState, action: PayloadAction<number>) => {
             state.numberOfGuests = action.payload
@@ -40,6 +46,7 @@ const userReducer = createSlice({
         setToDate: (state: UserState, action: PayloadAction<string>) => {
             state.date.toDate = action.payload
         },
+
     }
 });
 

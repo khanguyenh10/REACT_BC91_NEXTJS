@@ -82,6 +82,35 @@ npm install dayjs
 //2. config
 dayjs(date).format('DD/MM/YYYY HH:mm');
 ```
+## Swiper
+```js
+//1. setup
+npm i swiper
+//2. sử dụng
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+
+export default () => {
+  return (
+    <Swiper
+      spaceBetween={50}
+      slidesPerView={3}
+      {/* onSlideChange={() => console.log('slide change')} */}
+      {/* onSwiper={(swiper) => console.log(swiper)} */}
+    >
+      <SwiperSlide>Slide 1</SwiperSlide>
+      <SwiperSlide>Slide 2</SwiperSlide>
+      <SwiperSlide>Slide 3</SwiperSlide>
+      <SwiperSlide>Slide 4</SwiperSlide>
+      ...
+    </Swiper>
+  );
+};
+```
+
 
 ## Quy tắc 
 Quy tắc đặt tên: tên biến (camel Case), tên hàm (camel Case), tên class (Pascal Case)

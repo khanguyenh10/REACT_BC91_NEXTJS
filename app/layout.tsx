@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Script from "next/script";
 import "./global.css";
+import "swiper/css";
 import { ToastContainer } from "react-toastify";
 import LoadRedux from "./(component)/shared/LoadRedux";
 
