@@ -25,7 +25,7 @@ export async function fetcher(url: string, options?: RequestInit) {
         removeCookie(USERLOGIN);
         redirect('/login');
     }else if(res.status === 400 || res.status === 404){
-        redirect('/not-found');
+        // redirect('/not-found');
     }else if(!res.ok){
         const error = await res.json();
         throw new Error(error.message || 'Có lỗi xảy ra');

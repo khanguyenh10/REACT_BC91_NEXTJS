@@ -3,6 +3,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Image from 'next/image';
 import React from 'react'
 import LocationSearch from './component/LocationSearch';
+import Link from 'next/link';
 
 
 type Props = {}
@@ -23,7 +24,6 @@ const page = (props: Props) => {
 
         {/* OVERLAY */}
         <div className="absolute inset-0 bg-black/40" />
-
         <BookingSearch />
 
         {/* TEXT */}
@@ -52,22 +52,26 @@ const page = (props: Props) => {
               {
                 title: "Toàn bộ nhà",
                 img: "/noi-1.jpg",
+                href: "/rooms/ho-chi-minh",
               },
               {
                 title: "Chỗ ở độc đáo",
                 img: "/noi-2.jpg",
+                href: "/rooms/nha-trang",
               },
               {
                 title: "Trang trại và thiên nhiên",
                 img: "/noi-3.jpg",
+                href: "/rooms/da-lat",
               },
               {
                 title: "Cho phép mang theo thú cưng",
                 img: "/noi-4.jpg",
+                href: "/rooms/da-nang",
               },
             ].map((item, i) => (
               <div key={i} className="cursor-pointer">
-                <div className="overflow-hidden rounded-2xl">
+                <Link href={item.href} className="overflow-hidden rounded-2xl block">
                   <Image
                     alt={item.title}
                     width={400}
@@ -75,7 +79,7 @@ const page = (props: Props) => {
                     src={`${item.img}`}
                     className="w-full h-[160px] md:h-[200px] object-cover hover:scale-105 transition duration-300"
                   />
-                </div>
+                </Link>
 
                 <p className="mt-3 text-[15px] font-semibold">
                   {item.title}

@@ -12,10 +12,10 @@ export default function CardItem() {
                     <p className="text-sm text-gray-500">
                         Toàn bộ căn hộ dịch vụ
                     </p>
-                    <h3 className="font-semibold">
+                    <h3 className="text-lg font-semibold">
                         Romantic Apt for Long-term Living
                     </h3>
-
+                    <div className="w-[15%] bg-gray-300 h-[3px] rounded-lg my-2"></div>
                     <p className="text-sm text-gray-500 mt-1">
                         2 khách · 1 phòng ngủ · 1 giường
                     </p>
