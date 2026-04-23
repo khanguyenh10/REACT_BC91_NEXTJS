@@ -28,7 +28,7 @@ export default async function Listing(props: Props) {
     console.log('roomsData', roomsData);
     return (
         <div className="p-6 space-y-4">
-            <RoomListingTitle roomsData={[]} />
+            <RoomListingTitle roomsData={roomsData} />
             <h2 className="text-3xl font-semibold">
                 Chỗ ở tại khu vực bạn đã chọn
             </h2>

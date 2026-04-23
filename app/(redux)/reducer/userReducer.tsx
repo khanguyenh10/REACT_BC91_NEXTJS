@@ -1,5 +1,6 @@
 import { LOCATION_AT, setCookieClient } from '@/utils/config';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import dayjs from 'dayjs';
 
 export interface UserState { // dùng interface để dễ dàng mở rộng sau này
     date: {
@@ -16,8 +17,8 @@ export interface UserState { // dùng interface để dễ dàng mở rộng sau
 
 const initialState: UserState = {
     date: {
-        fromDate: '',
-        toDate: '',
+        fromDate: dayjs().add(1, 'day').format('YYYY-MM-DD'), // mặc định là ngày hiện tại
+        toDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
     },
     user: null,
     locationAt: {

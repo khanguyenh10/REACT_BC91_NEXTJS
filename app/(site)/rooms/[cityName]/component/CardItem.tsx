@@ -2,21 +2,21 @@ import { LocationVM } from '@/(viewModel)/LocationVM';
 import { RoomVM } from '@/(viewModel)/RoomVM';
 import Image from 'next/image';
 import React from 'react'
+import Link from 'next/link';
 type Props = {
     room: RoomVM;
     location: LocationVM;
 }
 export default function CardItem({ room, location }: Props) {
     return (
-        <div className="flex gap-4 cursor-pointer mb-5">
+        <Link href={`/rooms/${room.id}`} className="flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 rounded-xl p-3 transition">
             <img
                 alt={room.tenPhong}
-                width={300}
-                height={200}
-                src={room.hinhAnh}
+                width={125}
+                height={125}
+                src={room.hinhAnh.includes("http") ? room.hinhAnh : `https://placehold.co/300x200`}
                 className="w-48 h-32 object-cover rounded-xl"
             />
-
             <div className="flex flex-col justify-between">
                 <div>
                     <p className="text-sm text-gray-500">
@@ -33,6 +33,6 @@ export default function CardItem({ room, location }: Props) {
 
                 <p className="font-semibold">$385 / tháng</p>
             </div>
-        </div>
+        </Link>
     )
 }

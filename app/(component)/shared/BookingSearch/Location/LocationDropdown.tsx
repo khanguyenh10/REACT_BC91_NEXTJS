@@ -21,9 +21,9 @@ export default function LocationDropdown({ locations }: { locations: LocationVM[
                 setSelected(selectedLocation.tinhThanh);
             }
         }
-    }, [params, locations]); ``
+    }, [params]);
     return (
-        <div className="dropdown w-full">
+        <div className="dropdown w-full ">
             <div
                 tabIndex={0}
                 role="button"
@@ -35,12 +35,13 @@ export default function LocationDropdown({ locations }: { locations: LocationVM[
                 </span>
             </div>
 
-            <ul className="dropdown-content menu bg-white rounded-box z-10 w-full p-2 shadow">
+            <ul className="dropdown-content menu bg-white rounded-box z-100 w-full p-2 shadow">
                 {locations.map((loc) => (
                     <li key={loc.id}>
                         <button
                             onClick={() => {
                                 setSelected(loc.tinhThanh);
+                                // dispatch(setLocationAt({ id: loc.id, tinhThanh: loc.tinhThanh }));
                                 (document.activeElement as HTMLElement)?.blur();
                             }}
                             className="flex items-center gap-2"
