@@ -3,12 +3,15 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid'
 import React from 'react'
 import BookingInputs from './BookingInputs'
-import Location from './Location'
 import Link from 'next/link'
+import { getLocations } from '@/(api)/location'
+import { LocationVM } from '@/(viewModel)/LocationVM'
 
 type Props = {}
 
-const BookingSearch = (props: Props) => {
+const BookingSearch = async (props: Props) => {
+    const response = await getLocations();
+    let locations = response?.content || {} as LocationVM[];
     return (
         <>
             {/* SEARCH BAR */}
@@ -16,13 +19,7 @@ const BookingSearch = (props: Props) => {
 
                 <div className="bg-white rounded-full shadow-xl flex flex-col md:flex-row items-center">
 
-                    {/* Địa điểm */}
-                    <div className="px-6 py-2 border-b md:border-b-0 md:border-r w-full md:w-56">
-                        <p className="text-md font-semibold text-black">Địa điểm</p>
-                        <Location />
-                    </div>
-
-                    <BookingInputs />
+                    <BookingInputs locations={locations.splice(0, 8)} />
 
                 </div>
             </div>

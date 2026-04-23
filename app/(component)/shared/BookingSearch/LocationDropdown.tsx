@@ -9,10 +9,14 @@ import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function LocationDropdown({ locations }: { locations: LocationVM[] }) {
+type LocationDropdownProps = {
+    locations: LocationVM[];
+    selected: string | null;
+    setSelected: (value: string | null) => void;
+}
+export default function LocationDropdown({ locations, selected, setSelected }: LocationDropdownProps) {
     const { params } = useRouting();
     const { dispatch } = useRedux();
-    const [selected, setSelected] = useState<string | null>(null);
     useEffect(() => {
         if (params?.cityName) {
             const selectedLocation = locations.find(loc => stringToSlug(loc.tinhThanh) === params.cityName);
