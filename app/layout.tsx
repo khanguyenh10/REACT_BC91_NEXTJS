@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="mytheme"
       className={`${openSans.variable} `}
     >
       <head>

@@ -14,7 +14,7 @@ const HeadingTitle = (props: Props) => {
         <>
             <div className="absolute bottom-6 left-[50%] translate-x-[-50%]  text-white text-lg md:text-2xl font-medium" >
                 {locationAt.tinhThanh && `Những trải nghiệm tuyệt vời đang chờ bạn ở  `}
-                <span className="text-[#FF385C]">{locationAt.tinhThanh}</span>
+                <span className="text-secondary">{locationAt.tinhThanh}</span>
             </div >
         </>
 

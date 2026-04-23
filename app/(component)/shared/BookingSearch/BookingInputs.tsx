@@ -76,7 +76,7 @@ const BookingInputs = ({ locations }: Props) => {
                 </div>
             </div>
             <div className="px-6 py-2 flex justify-between items-center w-full md:w-20">
-                <button onClick={handleSearch} className="btn btn-circle bg-red-500 border-none text-white">
+                <button onClick={handleSearch} className="btn btn-circle bg-secondary border-none text-white">
                     <MagnifyingGlassIcon className="w-5 h-5" />
                 </button>
             </div>

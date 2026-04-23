@@ -79,11 +79,12 @@ const page = (props: Props) => {
                     src={`${item.img}`}
                     className="w-full h-[160px] md:h-[200px] object-cover hover:scale-105 transition duration-300"
                   />
+                  <p className="mt-3 text-[15px] font-semibold">
+                    {item.title}
+                  </p>
                 </Link>
 
-                <p className="mt-3 text-[15px] font-semibold">
-                  {item.title}
-                </p>
+
               </div>
             ))}
           </div>

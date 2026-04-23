@@ -3,13 +3,14 @@ import { RoomVM } from '@/(viewModel)/RoomVM';
 import Image from 'next/image';
 import React from 'react'
 import Link from 'next/link';
+import { stringToSlug } from '@/utils/text';
 type Props = {
     room: RoomVM;
     location: LocationVM;
 }
 export default function CardItem({ room, location }: Props) {
     return (
-        <Link href={`/rooms/${room.id}`} className="flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 rounded-xl p-3 transition">
+        <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className="flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 rounded-xl p-3 transition">
             <img
                 alt={room.tenPhong}
                 width={125}
@@ -31,7 +32,7 @@ export default function CardItem({ room, location }: Props) {
                     </p>
                 </div>
 
-                <p className="font-semibold">$385 / tháng</p>
+                <p className="font-semibold text-base-content">$385 / tháng</p>
             </div>
         </Link>
     )

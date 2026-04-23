@@ -1,10 +1,51 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@plugin "daisyui/theme" {
+    name: "mytheme";
+    default: true;
+    /* set as default */
+    prefersdark: false;
+    /* set as default dark mode (prefers-color-scheme:dark) */
+    color-scheme: light;
+    /* color of browser-provided UI */
 
-@theme {
-    --font-sans: var(--font-open-sans), sans-serif;
-    --breakpoint-xl: 1536px;
+    --color-base-100: #fff;
+    --color-base-200: oklch(95% 0.03 240);
+    --color-base-300: oklch(92% 0.04 240);
+    --color-base-content: #000;
+    --color-primary: #000;
+    --color-primary-content: #fff;
+    --color-secondary: #EB2254;
+    --color-secondary-content: #fff;
+    --color-accent: #EB2254;
+    --color-accent-content: #fff;
+    --color-neutral: #08086D;
+    --color-neutral-content: #fff;
+    --color-info: oklch(70% 0.2 220);
+    --color-info-content: oklch(98% 0.01 220);
+    --color-success: oklch(65% 0.25 140);
+    --color-success-content: oklch(98% 0.01 140);
+    --color-warning: oklch(80% 0.25 80);
+    --color-warning-content: oklch(20% 0.05 80);
+    --color-error: oklch(65% 0.3 30);
+    --color-error-content: oklch(98% 0.01 30);
+
+    /* border radius */
+    --radius-selector: 1rem;
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
+
+    /* base sizes */
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+
+    /* border size */
+    --border: 1px;
+
+    /* effects */
+    --depth: 1;
+    --noise: 0;
 }
 
 * {
@@ -38,4 +79,8 @@ input[type="number"] {
 
 .container {
     @apply max-w-screen-xl mx-auto px-4;
+}
+
+a:hover {
+    @apply text-secondary;
 }

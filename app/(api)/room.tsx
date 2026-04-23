@@ -5,3 +5,6 @@ import { ResponseData } from "@/(viewModel)/ResponseData";
 export const getRoomsByLocationId = async (locationId: number): Promise<ResponseData<RoomVM[]> | null> => {
     return await fetcher(`/phong-thue/lay-phong-theo-vi-tri?maViTri=${locationId}`);
 }
+export const getRoomById = async (id: number): Promise<ResponseData<RoomVM> | null> => {
+    return await fetcher(`/phong-thue/${id}`);
+}
