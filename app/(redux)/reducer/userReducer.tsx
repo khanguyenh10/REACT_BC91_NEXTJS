@@ -1,3 +1,4 @@
+import { LOCATION_AT, setCookieClient } from '@/utils/config';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface UserState { // dùng interface để dễ dàng mở rộng sau này
@@ -6,7 +7,7 @@ export interface UserState { // dùng interface để dễ dàng mở rộng sau
         toDate: string,
     },
     user: any,
-    locatedAt: {
+    locationAt: {
         id: number | null,
         tinhThanh: string | null,
     },
@@ -19,7 +20,7 @@ const initialState: UserState = {
         toDate: '',
     },
     user: null,
-    locatedAt: {
+    locationAt: {
         id: null,
         tinhThanh: null,
     },
@@ -33,9 +34,10 @@ const userReducer = createSlice({
         setUser: (state: UserState, action: PayloadAction<any>) => {
             state.user = action.payload
         },
-        setLocatedAt: (state: UserState, action: PayloadAction<{ id: number | null, tinhThanh: string | null }>) => {
-            state.locatedAt.id = action.payload.id
-            state.locatedAt.tinhThanh = action.payload.tinhThanh
+        setLocationAt: (state: UserState, action: PayloadAction<{ id: number | null, tinhThanh: string | null }>) => {
+            state.locationAt.id = action.payload.id
+            state.locationAt.tinhThanh = action.payload.tinhThanh
+            setCookieClient(LOCATION_AT, encodeURIComponent(JSON.stringify(action.payload)), 1) // lưu cookie 7 ngày
         },
         setNumberOfGuests: (state: UserState, action: PayloadAction<number>) => {
             state.numberOfGuests = action.payload
@@ -50,7 +52,6 @@ const userReducer = createSlice({
     }
 });
 
-export const { setUser, setLocatedAt, setNumberOfGuests, setFromDate, setToDate } = userReducer.actions
+export const { setUser, setLocationAt, setNumberOfGuests, setFromDate, setToDate } = userReducer.actions
 
 export default userReducer.reducer
-

@@ -1,23 +1,33 @@
-// components/CardItem.tsx
-export default function CardItem() {
+import { LocationVM } from '@/(viewModel)/LocationVM';
+import { RoomVM } from '@/(viewModel)/RoomVM';
+import Image from 'next/image';
+import React from 'react'
+type Props = {
+    room: RoomVM;
+    location: LocationVM;
+}
+export default function CardItem({ room, location }: Props) {
     return (
-        <div className="flex gap-4 cursor-pointer">
+        <div className="flex gap-4 cursor-pointer mb-5">
             <img
-                src="https://placehold.co/300x200"
+                alt={room.tenPhong}
+                width={300}
+                height={200}
+                src={room.hinhAnh}
                 className="w-48 h-32 object-cover rounded-xl"
             />
 
             <div className="flex flex-col justify-between">
                 <div>
                     <p className="text-sm text-gray-500">
-                        Toàn bộ căn hộ dịch vụ
+                        Toàn bộ căn hộ dịch vụ tại {location.tinhThanh}
                     </p>
                     <h3 className="text-lg font-semibold">
-                        Romantic Apt for Long-term Living
+                        {room.tenPhong}
                     </h3>
                     <div className="w-[15%] bg-gray-300 h-[3px] rounded-lg my-2"></div>
                     <p className="text-sm text-gray-500 mt-1">
-                        2 khách · 1 phòng ngủ · 1 giường
+                        {room.khach} khách · {room.phongNgu} phòng ngủ · {room.giuong} giường
                     </p>
                 </div>
 

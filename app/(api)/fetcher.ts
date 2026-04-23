@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
-import { ACCESSTOKEN, DOMAIN, getCookie, removeCookie, TOKENCYBERSOFT, USERLOGIN } from "../utils/config";
+import { ACCESSTOKEN, DOMAIN, TOKENCYBERSOFT, USERLOGIN } from "../utils/config";
 import { toast } from "react-toastify";
+import { getCookie, removeCookie } from "@/utils/cookieServer";
 
 
 export async function fetcher(url: string, options?: RequestInit) {

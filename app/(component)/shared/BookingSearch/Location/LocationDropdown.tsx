@@ -2,7 +2,7 @@
 
 import useRedux from "@/(hook)/useRedux";
 import useRouting from "@/(hook)/useRouting";
-import { setLocatedAt } from "@/(redux)/reducer/userReducer";
+import { setLocationAt } from "@/(redux)/reducer/userReducer";
 import { LocationVM } from "@/(viewModel)/LocationVM";
 import { stringToSlug } from "@/utils/text";
 import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
@@ -17,11 +17,11 @@ export default function LocationDropdown({ locations }: { locations: LocationVM[
         if (params?.cityName) {
             const selectedLocation = locations.find(loc => stringToSlug(loc.tinhThanh) === params.cityName);
             if (selectedLocation) {
-                dispatch(setLocatedAt({ id: selectedLocation.id, tinhThanh: selectedLocation.tinhThanh }));
+                dispatch(setLocationAt({ id: selectedLocation.id, tinhThanh: selectedLocation.tinhThanh }));
                 setSelected(selectedLocation.tinhThanh);
             }
         }
-    }, [params, locations]);
+    }, [params, locations]); ``
     return (
         <div className="dropdown w-full">
             <div
@@ -40,19 +40,19 @@ export default function LocationDropdown({ locations }: { locations: LocationVM[
                     <li key={loc.id}>
                         <button
                             onClick={() => {
-                                setSelected(loc.tenViTri);
+                                setSelected(loc.tinhThanh);
                                 (document.activeElement as HTMLElement)?.blur();
                             }}
                             className="flex items-center gap-2"
                         >
                             <Image
                                 src={loc.hinhAnh}
-                                alt={loc.tenViTri}
+                                alt={loc.tinhThanh}
                                 width={125}
                                 height={125}
                                 className="w-10 h-10 rounded-full object-cover"
                             />
-                            <span className="location-name text-gray-500">{loc.tenViTri}</span>
+                            <span className="location-name text-gray-500">{loc.tinhThanh}</span>
 
                         </button>
                     </li>

@@ -7,7 +7,9 @@ import useRedux from '@/(hook)/useRedux'
 import { RootState } from '@/(redux)/store'
 import HeadingTitle from './component/HeadingTitle'
 
-type Props = {}
+type Props = {
+    params: Promise<{ cityName: string }> | { cityName: string }
+}
 
 const page = (props: Props) => {
     return (
@@ -34,7 +36,7 @@ const page = (props: Props) => {
                     <div className="flex flex-1 overflow-hidden pt-20">
 
                         <div className="w-1/2 overflow-y-auto border-r">
-                            <RoomListing />
+                            <RoomListing params={props.params} />
                         </div>
 
                         <div className="w-1/2">

@@ -13,7 +13,7 @@ const Location = async (props: Props) => {
     // console.log('locations', locations);
 
     return (
-        <LocationDropdown locations={locations.splice(0, 10)} />
+        <LocationDropdown locations={locations.splice(0, 8)} />
     )
 }
 

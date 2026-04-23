@@ -1,12 +1,10 @@
-// utils/cookie.server.ts
-import { cookies } from "next/headers";
 
 //hẳng số
 export const DOMAIN = 'https://airbnbnew.cybersoft.edu.vn/api';
 export const ACCESSTOKEN = 'accessToken';
 export const USERLOGIN = 'userLogin';
 export const TOKENCYBERSOFT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA5MSIsIkhldEhhblN0cmluZyI6IjAyLzA5LzIwMjYiLCJIZXRIYW5UaW1lIjoiMTc4ODMwNzIwMDAwMCIsIm5iZiI6MTc1OTk0MjgwMCwiZXhwIjoxNzg4NDU0ODAwfQ.3f2gLYDZla_lDH4GWmfgSe9Il_QHrpoHIWhW6FSKTi8';
-
+export const LOCATION_AT = 'locationAt';
 
 // Viết các hàm sử dụng localstorage và các hằng số
 
@@ -38,7 +36,7 @@ const removeLocalStorage = (name: string) => {
 }
 
 // viết hàm lưu cookie
-const saveCookieClient = (name: string, value: string, days: number) => {
+const setCookieClient = (name: string, value: string, days: number) => {
     const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString(); //days * 24 * 60 * 60 * 1000 = 1 ngay
     document.cookie = `${name}=${value}; expires=${expires}; path=/`;
 }
@@ -52,34 +50,8 @@ const removeCookieClient = (name: string) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
-const getCookie = async (name: string): Promise<string | null> => {
-    const cookieStore = await cookies();
-    return cookieStore.get(name)?.value || null;
-};
-const setCookie = async (
-    name: string,
-    value: string,
-    options?: {
-        maxAge?: number;
-        path?: string;
-    }
-) => {
-    const cookieStore = await cookies();
 
-    cookieStore.set(name, value, {
-        httpOnly: true,
-        secure: true,
-        path: options?.path || "/",
-        maxAge: options?.maxAge || 60 * 60 * 24, // 1 ngày
-    });
-};
-const removeCookie = async (name: string) => {
-    const cookieStore = await cookies();
-    cookieStore.delete(name);
-};
-export { getCookie, setCookie, removeCookie };
-
-export { saveLocalStorage, getLocalStorage, saveLocalStorageString, getLocalStorageString, removeLocalStorage, saveCookieClient, getCookieClient, removeCookieClient };
+export { saveLocalStorage, getLocalStorage, saveLocalStorageString, getLocalStorageString, removeLocalStorage, setCookieClient, getCookieClient, removeCookieClient };
 
 
 //statuscode
