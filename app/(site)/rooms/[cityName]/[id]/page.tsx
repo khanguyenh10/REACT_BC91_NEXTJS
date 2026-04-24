@@ -8,17 +8,21 @@ import { ResponseData } from '@/(viewModel)/ResponseData'
 import { getLocationById } from '@/(api)/location'
 import { LocationVM } from '@/(viewModel)/LocationVM'
 import Conveniences from './component/Conveniences'
+import Comments from './component/Comments'
+import { getCommentsByRoomId } from '@/(api)/comment'
+import { CommentVM } from '@/(viewModel)/CommentVM'
 type Props = {
     params: Promise<{ id: string; cityName: string }> | { id: string; cityName: string }
 }
 
 const page = async (props: Props) => {
     const { id, cityName } = await props.params;
-    console.log('room id', id, cityName);
-    const responseLocation = await getLocationById(Number(id)) as ResponseData<LocationVM>;
-    const response = await getRoomById(Number(id)) as ResponseData<RoomVM>;
-    const locationDetail = responseLocation?.content as LocationVM;
-    const roomDetail = response?.content as RoomVM;
+    const resRoomDetail = await getRoomById(Number(id)) as ResponseData<RoomVM>;
+    const roomDetail = resRoomDetail?.content as RoomVM;
+    const resLocation = await getLocationById(Number(roomDetail.maViTri)) as ResponseData<LocationVM>;
+    const locationDetail = resLocation?.content as LocationVM;
+    const resComments = await getCommentsByRoomId(roomDetail.id) as ResponseData<CommentVM[]>;
+    const comments = resComments?.content || [] as CommentVM[];
     return (
         <div className='room-detail mt-[50px]'>
             <div className="container mx-auto px-4 py-6">
@@ -140,7 +144,7 @@ const page = async (props: Props) => {
                                 </div>
 
                                 {/* Guest */}
-                                <select className="select select-bordered w-full">
+                                <select className="select  w-full">
                                     <option>1 khách</option>
                                     <option>2 khách</option>
                                     <option>3 khách</option>
@@ -171,37 +175,7 @@ const page = async (props: Props) => {
                     </div>
                 </div>
                 {/* Reviews */}
-                <div className="mt-10">
-                    <h3 className="text-xl font-semibold mb-4">Đánh giá</h3>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {[1, 2, 3, 4].map((i) => (
-                            <div key={i} className="flex gap-3 items-start">
-                                <div className="avatar">
-                                    <div className="w-10 rounded-full">
-                                        <img src={`https://i.pravatar.cc/100?img=${i}`} />
-                                    </div>
-                                </div>
-                                <div>
-                                    <p className="font-medium">User {i}</p>
-                                    <p className="text-xs text-gray-500">tháng {i} năm 2022</p>
-                                    <p className="text-sm mt-1 text-gray-700">
-                                        Chỗ ở sạch sẽ, vị trí tốt. Chủ nhà thân thiện và hỗ trợ nhanh chóng.
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="mt-6">
-                        <textarea
-                            className="textarea textarea-bordered w-full"
-                            placeholder="Viết đánh giá của bạn..."
-                        />
-                        <button className="btn btn-primary mt-3">Add Comment</button>
-                    </div>
-                </div>
-
+                <Comments comments={comments} />
             </div>
         </div>
     )

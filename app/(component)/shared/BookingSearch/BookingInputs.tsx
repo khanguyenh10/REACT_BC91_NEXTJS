@@ -58,20 +58,20 @@ const BookingInputs = ({ locations }: Props) => {
             {/* Nhận phòng */}
             <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-42">
                 <p className="text-md font-semibold text-black mb-1">Nhận phòng</p>
-                <input type="date" className="input text-sm text-gray-500 p-0 h-auto " placeholder='Thêm ngày' onChange={handleFromDate} value={fromDate} />
+                <input type="date" className="input input-ghost text-sm text-gray-500 p-0 h-auto " placeholder='Thêm ngày' onChange={handleFromDate} value={fromDate} />
             </div>
 
             {/* Trả phòng */}
             <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-42">
                 <p className="text-md font-semibold text-black mb-1">Trả phòng</p>
-                <input type="date" className="input text-sm text-gray-500 p-0 h-auto" placeholder='Thêm ngày' onChange={handleToDate} value={toDate} />
+                <input type="date" className="input input-ghost text-sm text-gray-500 p-0 h-auto" placeholder='Thêm ngày' onChange={handleToDate} value={toDate} />
             </div>
             {/* Khách */}
             <div className="px-6 py-3 border-b md:border-b-0 md:border-r w-full md:w-42">
                 <p className="text-md font-semibold text-black mb-1">Khách</p>
                 <div className="flex items-center gap-2">
                     <button className="btn btn-sm h-auto" onClick={() => handleNumberOfGuests(Math.max(1, numberOfGuests - 1))}>-</button>
-                    <input type="number" className="input custom-number text-center  text-sm text-gray-500 p-0 h-auto w-[15px]" placeholder='Số lượng ' min="1" readOnly value={numberOfGuests} />
+                    <input type="number" className="input input-ghost custom-number text-center  text-sm text-gray-500 p-0 h-auto w-[15px]" placeholder='Số lượng ' min="1" readOnly value={numberOfGuests} />
                     <button className="btn btn-sm h-auto" onClick={() => handleNumberOfGuests(numberOfGuests + 1)}>+</button>
                 </div>
             </div>
