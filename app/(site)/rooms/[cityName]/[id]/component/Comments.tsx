@@ -12,7 +12,7 @@ type Props = {
 const Comments = async (props: Props) => {
     const { comments } = props
     return (
-        <div className="mt-10">
+        <div className="mt-10" id="comments">
             <h3 className="text-xl font-semibold mb-4">Đánh giá</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[200px] overflow-y-auto pr-2">

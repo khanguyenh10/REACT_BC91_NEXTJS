@@ -11,6 +11,9 @@ import Conveniences from './component/Conveniences'
 import Comments from './component/Comments'
 import { getCommentsByRoomId } from '@/(api)/comment'
 import { CommentVM } from '@/(viewModel)/CommentVM'
+import RoomOrder from './component/RoomOrder'
+import { getRoomsOrder } from '@/(api)/roomOrder'
+import { RoomOrderVM } from '@/(viewModel)/RoomOrderVM'
 type Props = {
     params: Promise<{ id: string; cityName: string }> | { id: string; cityName: string }
 }
@@ -23,6 +26,8 @@ const page = async (props: Props) => {
     const locationDetail = resLocation?.content as LocationVM;
     const resComments = await getCommentsByRoomId(roomDetail.id) as ResponseData<CommentVM[]>;
     const comments = resComments?.content || [] as CommentVM[];
+    const resRoomsOrder = await getRoomsOrder() as ResponseData<RoomOrderVM[]>;
+    const roomsOrder = resRoomsOrder?.content || [] as RoomOrderVM[];
     return (
         <div className='room-detail mt-[50px]'>
             <div className="container mx-auto px-4 py-6">
@@ -123,58 +128,10 @@ const page = async (props: Props) => {
 
                     </div>
 
-                    {/* RIGHT - BOOKING CARD */}
-                    <div className="lg:col-span-1">
-                        <div className="card bg-base-100 shadow-xl sticky top-6">
-                            <div className="card-body">
-                                <h2 className="text-xl font-semibold">
-                                    $44 <span className="text-sm font-normal">/ đêm</span>
-                                </h2>
-
-                                {/* Date */}
-                                <div className="grid grid-cols-2 gap-2">
-                                    <input
-                                        type="date"
-                                        className="input input-bordered w-full"
-                                    />
-                                    <input
-                                        type="date"
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-
-                                {/* Guest */}
-                                <select className="select  w-full">
-                                    <option>1 khách</option>
-                                    <option>2 khách</option>
-                                    <option>3 khách</option>
-                                </select>
-
-                                {/* Button */}
-                                <button className="btn btn-primary w-full">
-                                    Đặt phòng
-                                </button>
-
-                                {/* Price detail */}
-                                <div className="text-sm text-gray-600 space-y-1">
-                                    <div className="flex justify-between">
-                                        <span>$44 x 5 đêm</span>
-                                        <span>$220</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span>Phí dịch vụ</span>
-                                        <span>$31</span>
-                                    </div>
-                                    <div className="border-t pt-2 flex justify-between font-semibold">
-                                        <span>Tổng</span>
-                                        <span>$252</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {/* Room Order */}
+                    <RoomOrder room={roomDetail} comments={comments} roomsOrder={roomsOrder} />
                 </div>
-                {/* Reviews */}
+                {/* Comments */}
                 <Comments comments={comments} />
             </div>
         </div>

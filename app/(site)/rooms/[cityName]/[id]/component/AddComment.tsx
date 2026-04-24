@@ -13,7 +13,7 @@ const AddComment = (props: Props) => {
     return (
         <form action={formAction}>
             <textarea
-                className="textarea textarea-bordered w-full"
+                className="textarea textarea-bordered w-full h-24"
                 placeholder="Viết đánh giá của bạn..."
                 name="content"
             />

@@ -71,8 +71,8 @@ const BookingInputs = ({ locations }: Props) => {
                 <p className="text-md font-semibold text-black mb-1">Khách</p>
                 <div className="flex items-center gap-2">
                     <button className="btn btn-sm h-auto" onClick={() => handleNumberOfGuests(Math.max(1, numberOfGuests - 1))}>-</button>
-                    <input type="number" className="input input-ghost custom-number text-center  text-sm text-gray-500 p-0 h-auto w-[15px]" placeholder='Số lượng ' min="1" readOnly value={numberOfGuests} />
-                    <button className="btn btn-sm h-auto" onClick={() => handleNumberOfGuests(numberOfGuests + 1)}>+</button>
+                    <input type="number" className="input input-ghost custom-number text-center  text-sm text-gray-500 p-0 h-auto w-[15px]" placeholder='Số lượng ' min="1" readOnly value={numberOfGuests} max="3" />
+                    <button className="btn btn-sm h-auto" onClick={() => handleNumberOfGuests(Math.min(3, numberOfGuests + 1))}>+</button>
                 </div>
             </div>
             <div className="px-6 py-2 flex justify-between items-center w-full md:w-20">
