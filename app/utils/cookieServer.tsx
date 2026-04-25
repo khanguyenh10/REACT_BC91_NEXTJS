@@ -1,3 +1,4 @@
+"use server";
 // utils/cookie.server.ts
 import { cookies } from "next/headers";
 

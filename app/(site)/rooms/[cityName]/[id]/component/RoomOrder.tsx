@@ -1,5 +1,8 @@
 "use client";
+import { roomOrderAction } from '@/(api)/actions/roomOrderAction';
 import useRedux from '@/(hook)/useRedux';
+import useRouting from '@/(hook)/useRouting';
+import useServerAction from '@/(hook)/useServerAction';
 import { setFromDate, setNumberOfGuests, setToDate } from '@/(redux)/reducer/userReducer';
 import { CommentVM } from '@/(viewModel)/CommentVM';
 import { RoomOrderVM } from '@/(viewModel)/RoomOrderVM';
@@ -7,7 +10,13 @@ import { RoomVM } from '@/(viewModel)/RoomVM';
 import { toastError } from '@/utils/toast';
 import { StarIcon } from '@heroicons/react/16/solid';
 import dayjs from 'dayjs';
-import React from 'react'
+import React, { useActionState, useEffect } from 'react'
+
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
 
 type Props = {
     room: RoomVM;
@@ -16,19 +25,45 @@ type Props = {
 }
 
 const RoomOrder = (props: Props) => {
-    const { room, comments } = props;
+    const { pathname, navigate } = useRouting();
+    const { room, comments, roomsOrder } = props;
     const averageRating = comments.length > 0 ? (comments.reduce((sum, comment) => sum + comment.saoBinhLuan, 0) / comments.length).toFixed(2) : '0';
     const { useAppSelector, dispatch } = useRedux();
     const { date: { fromDate, toDate }, numberOfGuests } = useAppSelector((state) => state.userReducer);
     const countNight = dayjs(toDate).diff(dayjs(fromDate), 'day') + 1;
+
+    const isRoomOrdered = roomsOrder.some((roomOrder) => {
+        if (roomOrder.maPhong !== room.id) return false;
+
+        const startA = dayjs(roomOrder.ngayDen).startOf('day');
+        const endA = dayjs(roomOrder.ngayDi).startOf('day');
+
+        const startB = dayjs(fromDate).startOf('day');
+        const endB = dayjs(toDate).startOf('day');
+
+        if (startA.isSameOrBefore(endB) && startB.isSameOrBefore(endA)) {
+            console.log(roomOrder.ngayDen, roomOrder.ngayDi, fromDate, toDate);
+            return true;
+        }
+        return false;
+    });
+    console.log('isRoomOrdered', isRoomOrdered);
+
+    const { state, isPending, isSuccess, formAction } = useServerAction(
+        roomOrderAction,
+    );;
+
+
+
+
     const handleFromDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checkoutDate = e.target.value;
         console.log('checkoutDate', checkoutDate);
         let isInvalidDate = dayjs(checkoutDate).isBefore(dayjs());
-        if (isInvalidDate) {
-            toastError({ message: 'Ngày nhận phòng phải sau ngày hôm nay' });
-            return;
-        }
+        // if (isInvalidDate) {
+        //     toastError({ message: 'Ngày nhận phòng phải sau ngày hôm nay' });
+        //     return;
+        // }
         dispatch(setFromDate(checkoutDate));
     }
 
@@ -47,6 +82,16 @@ const RoomOrder = (props: Props) => {
         let action = setNumberOfGuests(value);
         dispatch(action);
     }
+
+    // refresh lại data khi oder thành công
+    useEffect(() => {
+        if (isSuccess) {
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000)
+        };
+    }, [isSuccess]);
+
     return (
         <div className="lg:col-span-1">
             <div className="card bg-base-100 shadow-xl sticky top-6">
@@ -61,53 +106,76 @@ const RoomOrder = (props: Props) => {
                         </div>
                     </div>
 
+                    <form action={formAction} >
+                        {/* Date */}
+                        <div className="grid grid-cols-2 gap-2">
+                            <div>
+                                <label className="label">
+                                    <span className="label-text mb-1">Ngày nhận phòng</span>
+                                </label>
+                                <input
+                                    type="date"
+                                    className="input input-bordered w-full"
+                                    value={fromDate}
+                                    onChange={handleFromDate}
+                                    name="fromDate"
+                                />
+                            </div>
+                            <div>
+                                <label className="label">
+                                    <span className="label-text mb-1">Ngày trả phòng</span>
+                                </label>
+                                <input
+                                    type="date"
+                                    className="input input-bordered w-full"
+                                    value={toDate}
+                                    onChange={handleToDate}
+                                    name="toDate"
+                                />
+                            </div>
 
-                    {/* Date */}
-                    <div className="grid grid-cols-2 gap-2 mt-4">
-                        <input
-                            type="date"
-                            className="input input-bordered w-full"
-                            value={fromDate}
-                            onChange={handleFromDate}
-                        />
-                        <input
-                            type="date"
-                            className="input input-bordered w-full"
-                            value={toDate}
-                            onChange={handleToDate}
-                        />
-                    </div>
 
-                    {/* Guest */}
-                    <select className="select  w-full" onChange={(e) => handleNumberOfGuests(parseInt(e.target.value))} value={numberOfGuests}>
-                        <option value={1}>1 khách</option>
-                        <option value={2}>2 khách</option>
-                        <option value={3}>3 khách</option>
-                    </select>
-
-                    {/* Button */}
-                    <button className="btn btn-primary w-full">
-                        Đặt phòng
-                    </button>
-
-                    {/* Price detail */}
-                    <div className="text-sm text-gray-600 space-y-1">
-                        <div className="flex justify-between">
-                            <span>${room.giaTien} x {countNight} đêm</span>
-                            <span>${room.giaTien * countNight}</span>
+                            <input type="hidden" name="roomId" value={room.id} />
+                            <input type="hidden" name="isRoomOrdered" value={isRoomOrdered.toString()} />
+                            <input type="hidden" name="pathname" value={pathname} />
                         </div>
-                        <div className="flex justify-between my-2">
-                            <span>Phí dịch vụ</span>
-                            <span>$8</span>
+
+                        {/* Guest */}
+                        <div className="my-2">
+                            <label className="label">
+                                <span className="label-text mb-1">Số lượng khách</span>
+                            </label>
+                            <select className="select  w-full " onChange={(e) => handleNumberOfGuests(parseInt(e.target.value))} value={numberOfGuests} name="numberOfGuests">
+                                <option value={1}>1 khách</option>
+                                <option value={2}>2 khách</option>
+                                <option value={3}>3 khách</option>
+                            </select>
+
                         </div>
-                        <div className="border-t text-base-content text-xl pt-2 flex justify-between font-semibold">
-                            <span>Tổng</span>
-                            <span>${room.giaTien * countNight + 8}</span>
+
+                        {/* Button */}
+                        <button className="btn btn-primary w-full" disabled={isPending}>
+                            {isPending ? <span className="loading loading-spinner"></span> : 'Đặt phòng'}
+                        </button>
+                        {/* Price detail */}
+                        <div className="text-sm text-gray-600 space-y-1 my-2">
+                            <div className="flex justify-between">
+                                <span>${room.giaTien} x {countNight} đêm</span>
+                                <span>${room.giaTien * countNight}</span>
+                            </div>
+                            <div className="flex justify-between my-2">
+                                <span>Phí dịch vụ</span>
+                                <span>$8</span>
+                            </div>
+                            <div className="border-t text-base-content text-xl pt-2 flex justify-between font-semibold">
+                                <span>Tổng</span>
+                                <span>${room.giaTien * countNight + 8}</span>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

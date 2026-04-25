@@ -1,5 +1,5 @@
 "use client";
-import { addCommentAction } from '@/(api)/actions/comment-action';
+import { addCommentAction } from '@/(api)/actions/commentAction';
 import React, { useActionState } from 'react'
 
 type Props = {}

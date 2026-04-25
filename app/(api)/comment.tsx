@@ -8,9 +8,6 @@ export const getCommentsByRoomId = async (roomId: number) => {
 export const postComment = async (commentData: any) => {
     return fetcher('/binh-luan/them-binh-luan', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
         body: JSON.stringify(commentData),
     });
 }

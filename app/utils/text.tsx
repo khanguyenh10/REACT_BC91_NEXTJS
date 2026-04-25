@@ -21,3 +21,10 @@ export function stringToSlug(str: string) {
 export function formateDate(dateString: string, format = 'DD/MM/YYYY HH:mm') {
     return dayjs(dateString).format(format);
 }
+
+export const toBoolean = (val: any) => {
+    if (typeof val === 'boolean') return val;
+    if (val === 'true') return true;
+    if (val === 'false') return false;
+    return Boolean(val);
+};

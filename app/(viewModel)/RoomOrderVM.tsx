@@ -1,6 +1,6 @@
 
 export interface RoomOrderVM {
-    id: number;
+    id?: number;
     maPhong: number;
     ngayDen: string;
     ngayDi: string;
