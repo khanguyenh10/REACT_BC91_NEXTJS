@@ -8,7 +8,9 @@ import { RoomOrderVM } from "@/(viewModel)/RoomOrderVM";
 import { ActionState } from "@/(hook)/useServerAction";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 
+dayjs.extend(isSameOrBefore);
 
 export const roomOrderAction = async (prevState: FormStateVM, formData: FormData) => {
     let resData: ActionState;
@@ -19,7 +21,7 @@ export const roomOrderAction = async (prevState: FormStateVM, formData: FormData
             message: "Phòng đã có khách đặt"
         }
     }
-    if (dayjs(data.toDate as string).isBefore(dayjs(data.fromDate as string))) {
+    if (dayjs(data.toDate as string).isSameOrBefore(dayjs(data.fromDate as string))) {
         console.log('dewa')
         return resData = {
             status: "error",

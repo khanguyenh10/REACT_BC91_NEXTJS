@@ -15,8 +15,7 @@ import React, { useActionState, useEffect } from 'react'
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 
-dayjs.extend(isSameOrBefore);
-dayjs.extend(isSameOrAfter);
+
 
 type Props = {
     room: RoomVM;
@@ -30,8 +29,9 @@ const RoomOrder = (props: Props) => {
     const averageRating = comments.length > 0 ? (comments.reduce((sum, comment) => sum + comment.saoBinhLuan, 0) / comments.length).toFixed(2) : '0';
     const { useAppSelector, dispatch } = useRedux();
     const { date: { fromDate, toDate }, numberOfGuests } = useAppSelector((state) => state.userReducer);
-    const countNight = dayjs(toDate).diff(dayjs(fromDate), 'day') + 1;
+    const countNight = dayjs(toDate).diff(dayjs(fromDate), 'day');
 
+    // checkin và checkout ko cùng 1 ngày, checkin vào 12h
     const isRoomOrdered = roomsOrder.some((roomOrder) => {
         if (roomOrder.maPhong !== room.id) return false;
 
@@ -41,7 +41,7 @@ const RoomOrder = (props: Props) => {
         const startB = dayjs(fromDate).startOf('day');
         const endB = dayjs(toDate).startOf('day');
 
-        if (startA.isSameOrBefore(endB) && startB.isSameOrBefore(endA)) {
+        if (startA.isBefore(endB) && startB.isBefore(endA)) {
             console.log(roomOrder.ngayDen, roomOrder.ngayDi, fromDate, toDate);
             return true;
         }
