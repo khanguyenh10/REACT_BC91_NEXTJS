@@ -36,7 +36,7 @@ export const roomOrderAction = async (prevState: FormState, formData: FormData) 
         };
         await postRoomOrder(postData);
         //update lại data
-        revalidatePath(data.pathname as string);
+        // revalidatePath(data.pathname as string);
         return resData = {
             status: "success",
             message: 'Đặt phòng thành công'

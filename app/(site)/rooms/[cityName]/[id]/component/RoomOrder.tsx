@@ -16,6 +16,7 @@ import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import LoadingSpinner from '@/(component)/shared/UI/LoadingSpinner';
 import { CommentVMByRoomID } from '@/(viewModel)/CommentVMByRoomID';
+import CustomSelect from '@/(component)/shared/UI/CustomSelect';
 
 
 
@@ -76,11 +77,12 @@ const RoomOrder = (props: Props) => {
         dispatch(setToDate(checkoutDate));
     }
     const handleNumberOfGuests = (value: number) => {
+        console.log("value", value);
         let action = setNumberOfGuests(value);
         dispatch(action);
     }
 
-
+    console.log("numberOfGuests", numberOfGuests);
     return (
         <div className="lg:col-span-1">
             <div className="card bg-base-100 shadow-xl sticky top-6">
@@ -134,16 +136,26 @@ const RoomOrder = (props: Props) => {
                             <label className="label">
                                 <span className="label-text mb-1">Số lượng khách</span>
                             </label>
-                            <select className="select  w-full " onChange={(e) => handleNumberOfGuests(parseInt(e.target.value))} value={numberOfGuests} name="numberOfGuests">
-                                <option value={1}>1 khách</option>
-                                <option value={2}>2 khách</option>
-                                <option value={3}>3 khách</option>
-                            </select>
+                            <CustomSelect
+                                value={numberOfGuests.toString()}
+                                onChange={(value) => handleNumberOfGuests(parseInt(value))}
+                                placeholder="Số lượng khách"
+                                options={[
+                                    { label: "1", value: "1" },
+                                    { label: "2", value: "2" },
+                                    { label: "3", value: "3" },
+                                ]}
+                            />
+                            {/* <select className="select  w-full " onChange={(e) => handleNumberOfGuests(parseInt(e.target.value))} value={numberOfGuests} name="numberOfGuests">
+                                <option value={1} >1 khách</option>
+                                <option value={2} >2 khách</option>
+                                <option value={3} >3 khách</option>
+                            </select> */}
 
                         </div>
 
                         {/* Button */}
-                        <button className="btn btn-primary w-full" disabled={isPending}>
+                        <button type="submit" className="btn btn-primary w-full" disabled={isPending}>
                             {isPending ? <LoadingSpinner /> : 'Đặt phòng'}
                         </button>
                         {/* Price detail */}
