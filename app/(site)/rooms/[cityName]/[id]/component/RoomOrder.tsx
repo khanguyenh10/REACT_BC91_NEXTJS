@@ -14,12 +14,14 @@ import React, { useActionState, useEffect } from 'react'
 
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import LoadingSpinner from '@/(component)/shared/UI/LoadingSpinner';
+import { CommentVMByRoomID } from '@/(viewModel)/CommentVMByRoomID';
 
 
 
 type Props = {
     room: RoomVM;
-    comments: CommentVM[];
+    comments: CommentVMByRoomID[];
     roomsOrder: RoomOrderVM[];
 }
 
@@ -42,12 +44,10 @@ const RoomOrder = (props: Props) => {
         const endB = dayjs(toDate).startOf('day');
 
         if (startA.isBefore(endB) && startB.isBefore(endA)) {
-            console.log(roomOrder.ngayDen, roomOrder.ngayDi, fromDate, toDate);
             return true;
         }
         return false;
     });
-    console.log('isRoomOrdered', isRoomOrdered);
 
     const { state, isPending, isSuccess, formAction } = useServerAction(
         roomOrderAction,
@@ -58,7 +58,6 @@ const RoomOrder = (props: Props) => {
 
     const handleFromDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checkoutDate = e.target.value;
-        console.log('checkoutDate', checkoutDate);
         let isInvalidDate = dayjs(checkoutDate).isBefore(dayjs());
         // if (isInvalidDate) {
         //     toastError({ message: 'Ngày nhận phòng phải sau ngày hôm nay' });
@@ -69,7 +68,6 @@ const RoomOrder = (props: Props) => {
 
     const handleToDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checkoutDate = e.target.value;
-        console.log('checkoutDate', checkoutDate);
         let isInvalidDate = dayjs(checkoutDate).isBefore(dayjs(fromDate));
         if (isInvalidDate) {
             toastError({ message: 'Ngày trả phòng phải sau ngày nhận phòng' });
@@ -78,19 +76,10 @@ const RoomOrder = (props: Props) => {
         dispatch(setToDate(checkoutDate));
     }
     const handleNumberOfGuests = (value: number) => {
-        console.log('numberOfGuests', value);
         let action = setNumberOfGuests(value);
         dispatch(action);
     }
 
-    // refresh lại data khi oder thành công
-    useEffect(() => {
-        if (isSuccess) {
-            setTimeout(() => {
-                window.location.href = '/';
-            }, 1000)
-        };
-    }, [isSuccess]);
 
     return (
         <div className="lg:col-span-1">
@@ -155,7 +144,7 @@ const RoomOrder = (props: Props) => {
 
                         {/* Button */}
                         <button className="btn btn-primary w-full" disabled={isPending}>
-                            {isPending ? <span className="loading loading-spinner"></span> : 'Đặt phòng'}
+                            {isPending ? <LoadingSpinner /> : 'Đặt phòng'}
                         </button>
                         {/* Price detail */}
                         <div className="text-sm text-gray-600 space-y-1 my-2">

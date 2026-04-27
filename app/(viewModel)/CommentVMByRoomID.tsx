@@ -1,9 +1,9 @@
 
-export interface CommentVM {
+export interface CommentVMByRoomID {
     id?: number;
-    maPhong: number;
-    maNguoiBinhLuan: number;
     ngayBinhLuan: string;
     noiDung: string;
+    tenNguoiBinhLuan: string;
     saoBinhLuan: number;
+    avatar: string
 }

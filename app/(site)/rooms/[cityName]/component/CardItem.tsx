@@ -10,7 +10,7 @@ type Props = {
 }
 export default function CardItem({ room, location }: Props) {
     return (
-        <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className="flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 rounded-xl p-3 transition">
+        <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className="flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 hover:text-secondary rounded-xl p-3 transition">
             <img
                 alt={room.tenPhong}
                 width={125}

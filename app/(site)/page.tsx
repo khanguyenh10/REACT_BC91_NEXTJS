@@ -71,7 +71,7 @@ const page = (props: Props) => {
               },
             ].map((item, i) => (
               <div key={i} className="cursor-pointer">
-                <Link href={item.href} className="overflow-hidden rounded-2xl block">
+                <Link href={item.href} className="overflow-hidden rounded-2xl block hover:text-secondary">
                   <Image
                     alt={item.title}
                     width={400}

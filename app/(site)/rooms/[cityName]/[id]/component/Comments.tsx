@@ -5,18 +5,22 @@ import React from 'react'
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import AddComment from './AddComment';
+import { CommentVMByRoomID } from '@/(viewModel)/CommentVMByRoomID';
+import { RoomVM } from '@/(viewModel)/RoomVM';
+import { UserCircleIcon } from '@heroicons/react/16/solid';
 type Props = {
-    comments: CommentVM[];
+    comments: CommentVMByRoomID[];
+    room: RoomVM;
 }
 
 const Comments = async (props: Props) => {
-    const { comments } = props
+    const { comments, room } = props
     return (
         <div className="mt-10" id="comments">
             <h3 className="text-xl font-semibold mb-4">Đánh giá</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[200px] overflow-y-auto pr-2">
-                {comments.map((comment, i) => (
+                {comments.reverse().map((comment, i) => (
                     <div key={i} className="flex gap-3 items-start">
                         <div className="avatar">
                             <div className="w-10 rounded-full">
@@ -35,7 +39,7 @@ const Comments = async (props: Props) => {
             </div>
 
             <div className="mt-6">
-                <AddComment />
+                <AddComment room={room} />
             </div>
         </div>
 

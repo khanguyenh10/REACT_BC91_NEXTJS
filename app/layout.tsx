@@ -6,6 +6,7 @@ import "./global.css";
 import { ToastContainer } from "react-toastify";
 import LoadRedux from "./(component)/shared/LoadRedux";
 import { PaperAirplaneIcon } from "@heroicons/react/16/solid";
+import ModalContainer from "./(component)/shared/UI/ModalContainer";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -29,9 +30,12 @@ export default function RootLayout({
         <link rel="icon" href={"../favicon.png"} />
       </head>
 
-      <body className=" bg-white">
+      <body className=" bg-white antialiased">
         <LoadRedux>
-          {children}
+          <>
+            {children}
+            <ModalContainer />
+          </>
         </LoadRedux>
         <ToastContainer />
       </body>

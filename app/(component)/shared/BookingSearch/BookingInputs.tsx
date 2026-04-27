@@ -26,12 +26,10 @@ const BookingInputs = ({ locations }: Props) => {
 
     const handleFromDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checkinDate = e.target.value;
-        console.log('checkinDate', checkinDate);
         setFromDateState(checkinDate);
     }
     const handleToDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checkoutDate = e.target.value;
-        console.log('checkoutDate', checkoutDate);
         let isInvalidDate = dayjs(checkoutDate).isBefore(dayjs(date.fromDate));
         if (isInvalidDate) {
             toastError({ message: 'Ngày trả phòng phải sau ngày nhận phòng' });
@@ -40,7 +38,6 @@ const BookingInputs = ({ locations }: Props) => {
         setToDateState(checkoutDate);
     }
     const handleNumberOfGuests = (value: number) => {
-        console.log('numberOfGuests', value);
         let action = setNumberOfGuests(value);
         dispatch(action);
     }

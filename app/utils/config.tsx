@@ -2,7 +2,7 @@
 //hẳng số
 export const DOMAIN = 'https://airbnbnew.cybersoft.edu.vn/api';
 export const ACCESSTOKEN = 'accessToken';
-export const USERLOGIN = 'userLogin';
+export const USER = 'user';
 export const TOKENCYBERSOFT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA5MSIsIkhldEhhblN0cmluZyI6IjAyLzA5LzIwMjYiLCJIZXRIYW5UaW1lIjoiMTc4ODMwNzIwMDAwMCIsIm5iZiI6MTc1OTk0MjgwMCwiZXhwIjoxNzg4NDU0ODAwfQ.3f2gLYDZla_lDH4GWmfgSe9Il_QHrpoHIWhW6FSKTi8';
 export const LOCATION_AT = 'locationAt';
 
@@ -25,7 +25,8 @@ const saveLocalStorage = (name: string, value: any) => {
 }
 
 const getLocalStorage = (name: string) => {
-    const data = localStorage.getItem(name);
+    if (typeof window === "undefined") return null;
+    const data = localStorage?.getItem(name);
     if (data) {
         return JSON.parse(data);
     }
@@ -44,7 +45,13 @@ const setCookieClient = (name: string, value: string, days: number) => {
 const getCookieClient = (name: string) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop()?.split(';').shift();
+    if (parts.length === 2) {
+        let data = parts.pop()?.split(';').shift();
+        if (data) {
+            return JSON.parse(decodeURIComponent(data));
+        }
+    }
+    return null;
 }
 const removeCookieClient = (name: string) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;

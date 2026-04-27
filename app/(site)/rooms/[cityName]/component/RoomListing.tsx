@@ -16,7 +16,6 @@ type Props = {
 
 export default async function Listing(props: Props) {
     const { cityName } = await props.params;
-    console.log(cityName);
     const response = await getSearchLocations(1, 8, '');;
     let locations = response?.content.data as LocationVM[];
     const location = locations.find(loc => stringToSlug(loc.tinhThanh) === cityName);
@@ -25,7 +24,6 @@ export default async function Listing(props: Props) {
     }
     const rooms = await getRoomsByLocationId(location.id) as ResponseData<RoomVM[]>;
     const roomsData = rooms?.content.splice(0, 30) || [] as RoomVM[];
-    console.log('roomsData', roomsData);
     return (
         <div className="p-6 space-y-4">
             <RoomListingTitle roomsData={roomsData} />

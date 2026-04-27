@@ -29,10 +29,4 @@ const getCookie = async (name: string): Promise<any | null> => {
         return cookieValue;
     }
 };
-
-
-const removeCookie = async (name: string) => {
-    const cookieStore = await cookies();
-    cookieStore.delete(name);
-};
-export { getCookie, setCookie, removeCookie };
+export { getCookie, setCookie };

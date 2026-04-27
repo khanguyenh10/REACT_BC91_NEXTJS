@@ -14,6 +14,7 @@ import { CommentVM } from '@/(viewModel)/CommentVM'
 import RoomOrder from './component/RoomOrder'
 import { getRoomsOrder } from '@/(api)/roomOrder'
 import { RoomOrderVM } from '@/(viewModel)/RoomOrderVM'
+import { CommentVMByRoomID } from '@/(viewModel)/CommentVMByRoomID'
 type Props = {
     params: Promise<{ id: string; cityName: string }> | { id: string; cityName: string }
 }
@@ -24,8 +25,8 @@ const page = async (props: Props) => {
     const roomDetail = resRoomDetail?.content as RoomVM;
     const resLocation = await getLocationById(Number(roomDetail.maViTri)) as ResponseData<LocationVM>;
     const locationDetail = resLocation?.content as LocationVM;
-    const resComments = await getCommentsByRoomId(roomDetail.id) as ResponseData<CommentVM[]>;
-    const comments = resComments?.content || [] as CommentVM[];
+    const resComments = await getCommentsByRoomId(roomDetail.id) as ResponseData<CommentVMByRoomID[]>;
+    const comments = resComments?.content || [] as CommentVMByRoomID[];
     const resRoomsOrder = await getRoomsOrder() as ResponseData<RoomOrderVM[]>;
     const roomsOrder = resRoomsOrder?.content || [] as RoomOrderVM[];
     return (
@@ -132,7 +133,7 @@ const page = async (props: Props) => {
                     <RoomOrder room={roomDetail} comments={comments} roomsOrder={roomsOrder} />
                 </div>
                 {/* Comments */}
-                <Comments comments={comments} />
+                <Comments comments={comments} room={roomDetail} />
             </div>
         </div>
     )

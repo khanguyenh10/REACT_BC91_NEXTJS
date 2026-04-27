@@ -46,6 +46,7 @@
     /* effects */
     --depth: 1;
     --noise: 0;
+    --menu-active-bg: var(--color-secondary);
 }
 
 * {
@@ -81,6 +82,10 @@ input[type="number"] {
     @apply max-w-screen-xl mx-auto px-4;
 }
 
-a:hover {
+.link:hover {
     @apply text-secondary;
+}
+
+.menu {
+    --menu-active-bg: var(--color-secondary);
 }

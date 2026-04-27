@@ -4,26 +4,30 @@ import React, { useActionState, useEffect, useRef } from 'react'
 
 type Props = {}
 
-export type ActionState = {
-    status: null | 'success' | 'error',
+export type FormState = {
+    status?: null | 'success' | 'error',
     message?: string,
-    errors?: Record<string, string>, // vd: { email: 'email is required', password: 'password is required' }
+    errors?: Record<string, string[]>, // vd: { email: 'email is required', password: 'password is required' }
     data?: any
 }
 
 
-const useServerAction = (action: any, initialState?: ActionState) => {
-    const [state, formAction, isPending] = useActionState(action, initialState = { status: null, message: '', errors: {}, data: null });
+const useServerAction = (action: any, initialState?: FormState) => {
+    const [state, formAction, isPending] = useActionState<FormState, FormData>(action, initialState = { status: null, message: '', errors: {}, data: null });
 
 
     // toast show message tránh render lại nhiều lần
     useEffect(() => {
 
         if (state.status === 'success') {
-            toastSuccess(state.message);
+            setTimeout(() => {
+                toastSuccess("Thành công");
+            }, 100);
         }
         if (state.status === 'error') {
-            toastError(state.message);
+            setTimeout(() => {
+                toastError(state.message as string);
+            }, 1000);
         }
     }, [state])
 
