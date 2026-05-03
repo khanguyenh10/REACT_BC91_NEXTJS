@@ -16,3 +16,19 @@ export const RegisterSchema = z.object({
     phone: z.string().regex(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, 'Số định danh phải 10 ký tự'),
     birthday: z.string().trim().min(1, 'Ngày sinh không được để trống'),
 })
+
+export const ImageSchema = z
+  .instanceof(File)
+  .refine((file) => file.size <= 2 * 1024 * 1024, {
+    message: "Ảnh phải nhỏ hơn 2MB",
+  })
+  .refine(
+    (file) =>
+      ["image/jpeg", "image/png", "image/webp"].includes(file.type),
+    {
+      message: "Chỉ chấp nhận JPG, PNG, WEBP",
+    }
+  );
+export const AvatarSchema = z.object({
+  avatar: ImageSchema,
+});

@@ -8,7 +8,7 @@ type Props = {
     room: RoomVM;
     location: LocationVM;
 }
-export default function CardItem({ room, location }: Props) {
+export default function RoomItem({ room, location }: Props) {
     return (
         <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className="flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 hover:text-secondary rounded-xl p-3 transition">
             <img
@@ -32,7 +32,7 @@ export default function CardItem({ room, location }: Props) {
                     </p>
                 </div>
 
-                <p className="font-semibold text-base-content">$385 / tháng</p>
+                <p className="font-semibold text-base-content">${room.giaTien} / đêm</p>
             </div>
         </Link>
     )

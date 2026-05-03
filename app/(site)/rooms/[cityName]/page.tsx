@@ -15,21 +15,24 @@ const page = (props: Props) => {
     return (
         <>
             <section className="introduce relative">
-                <Image
-                    src="https://picsum.photos/1920/1080?random=2"
-                    className="w-full h-[500px] object-cover"
-                    loading='eager'
-                    width={1920}
-                    height={1080}
-                    alt='...'
-                />
+                <div className='relative'>
+                    <Image
+                        src="https://picsum.photos/1920/1080?random=2"
+                        className="w-full h-[500px] object-cover"
+                        loading='eager'
+                        width={1920}
+                        height={1080}
+                        alt='...'
+                    />
 
-                {/* OVERLAY */}
-                <div className="absolute inset-0 bg-black/40" />
+                    {/* OVERLAY */}
 
-                <BookingSearch />
+                    <BookingSearch />
 
-                <HeadingTitle />
+                    <HeadingTitle />
+                    <div className="absolute inset-0 bg-black/40 rounded-xl"></div>
+                </div>
+
             </section>
             <section className='room-listing'>
                 <div className="container ">

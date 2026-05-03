@@ -4,6 +4,7 @@ import { closeModal } from '@/(redux)/reducer/modalReducer';
 import React, { useEffect, useRef } from 'react'
 import Login from '@/(site)/(.)login/page';
 import Register from '@/(site)/(.)register/page';
+import UploadAvatar from '@/(site)/(.)upload-avatar/page';
 type Props = {}
 
 const ModalContainer = (props: Props) => {
@@ -25,6 +26,7 @@ const ModalContainer = (props: Props) => {
     const renderContentType = () => {
         if (contentType === "LOGIN") return <Login />;
         if (contentType === "REGISTER") return <Register />
+        if (contentType === "UPLOAD_AVATAR") return <UploadAvatar />
     }
     return (
         <div>

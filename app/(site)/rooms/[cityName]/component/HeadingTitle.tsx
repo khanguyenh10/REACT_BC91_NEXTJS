@@ -12,7 +12,7 @@ const HeadingTitle = (props: Props) => {
     const { locationAt } = useAppSelector((state: RootState) => state.userReducer);
     return (
         <>
-            <div className="absolute bottom-6 left-[50%] translate-x-[-50%]  text-white text-lg md:text-2xl font-medium" >
+            <div className="absolute bottom-6 left-[50%] translate-x-[-50%]  text-white text-lg md:text-2xl font-medium z-10" >
                 {locationAt.tinhThanh && `Những trải nghiệm tuyệt vời đang chờ bạn ở  `}
                 <span className="text-secondary">{locationAt.tinhThanh}</span>
             </div >

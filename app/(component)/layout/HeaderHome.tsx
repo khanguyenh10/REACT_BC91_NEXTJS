@@ -20,7 +20,7 @@ const HeaderHome = ({ isLoggedin }: Props) => {
     const { user } = useAppSelector((state: RootState) => state.userReducer);
     let textHeadderColor = "text-white";
     let borderMenuColor = "border-white";
-    if (pathname.startsWith("/rooms/")) {
+    if (pathname.startsWith("/rooms/") || pathname.startsWith("/profile")) {
         textHeadderColor = "text-black bg-white";
         borderMenuColor = "border-black";
     }
@@ -40,7 +40,7 @@ const HeaderHome = ({ isLoggedin }: Props) => {
             return (
                 <>
                     <li>
-                        <Link href="/profile" className="flex items-center gap-2"><UserIcon className="w-6 h-6" /> <span>{user.name}</span></Link>
+                        <Link href={`/profile/${user.id}`} className="flex items-center gap-2"><UserIcon className="w-6 h-6" /> <span>{user.name}</span></Link>
                     </li>
                     <li>
                         <form action={logoutAction} className=" block">

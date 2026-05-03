@@ -2,7 +2,6 @@ import { GiftIcon } from '@heroicons/react/16/solid'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import { getRoomById } from '@/(api)/room'
 import { RoomVM } from '@/(viewModel)/RoomVM'
 import { ResponseData } from '@/(viewModel)/ResponseData'
 import { getLocationById } from '@/(api)/location'
@@ -12,23 +11,24 @@ import Comments from './component/Comments'
 import { getCommentsByRoomId } from '@/(api)/comment'
 import { CommentVM } from '@/(viewModel)/CommentVM'
 import RoomOrder from './component/RoomOrder'
-import { getRoomsOrder } from '@/(api)/roomOrder'
+import { getRoomOrders } from '@/(api)/roomOrder'
 import { RoomOrderVM } from '@/(viewModel)/RoomOrderVM'
 import { CommentVMByRoomID } from '@/(viewModel)/CommentVMByRoomID'
+import { getRoom } from '@/(api)/room'
 type Props = {
     params: Promise<{ id: string; cityName: string }> | { id: string; cityName: string }
 }
 
 const page = async (props: Props) => {
     const { id, cityName } = await props.params;
-    const resRoomDetail = await getRoomById(Number(id)) as ResponseData<RoomVM>;
+    const resRoomDetail = await getRoom(Number(id)) as ResponseData<RoomVM>;
     const roomDetail = resRoomDetail?.content as RoomVM;
     const resLocation = await getLocationById(Number(roomDetail.maViTri)) as ResponseData<LocationVM>;
     const locationDetail = resLocation?.content as LocationVM;
     const resComments = await getCommentsByRoomId(roomDetail.id) as ResponseData<CommentVMByRoomID[]>;
     const comments = resComments?.content || [] as CommentVMByRoomID[];
-    const resRoomsOrder = await getRoomsOrder() as ResponseData<RoomOrderVM[]>;
-    const roomsOrder = resRoomsOrder?.content || [] as RoomOrderVM[];
+    const resRoomOrders = await getRoomOrders() as ResponseData<RoomOrderVM[]>;
+    const roomsOrder = resRoomOrders?.content || [] as RoomOrderVM[];
     return (
         <div className='room-detail mt-[50px]'>
             <div className="container mx-auto px-4 py-6">

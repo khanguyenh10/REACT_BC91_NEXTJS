@@ -2,7 +2,7 @@ import React from 'react'
 
 import { toast } from 'react-toastify';
 import Image from 'next/image';
-import { getLocations, getSearchLocations } from '@/(api)/location';
+import { getLocations, getSearchPaginLocations } from '@/(api)/location';
 import { LocationVM } from '@/(viewModel)/LocationVM';
 import Link from 'next/link';
 import { stringToSlug } from '@/utils/text';
@@ -10,7 +10,7 @@ import { stringToSlug } from '@/utils/text';
 type Props = {}
 
 const LocationSearch = async (props: Props) => {
-    const response = await getSearchLocations(1, 8, '');;
+    const response = await getSearchPaginLocations(1, 8, '');;
     let locations = response?.content.data as LocationVM[];
     locations = locations.map((item, index) => {
         let times = [

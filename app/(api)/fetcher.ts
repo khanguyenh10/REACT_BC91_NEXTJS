@@ -8,7 +8,7 @@ export async function fetcher(url: string, options?: RequestInit) {
 const method = options?.method?.toUpperCase() || 'GET';
     const token = await getCookie(ACCESSTOKEN);  
     const fetchUrl = DOMAIN + url;
-    console.log("token", token);
+      const isFormData = options?.body instanceof FormData;
     try {
         const res = await fetch(fetchUrl, {
         ...options,
@@ -16,7 +16,7 @@ const method = options?.method?.toUpperCase() || 'GET';
             ...options?.headers,
             token : `${token}`,
             tokenCybersoft: TOKENCYBERSOFT,
-            'Content-Type': 'application/json',
+            ...(!isFormData && { 'Content-Type': 'application/json' }),
         },
         ...(method === 'GET'
         ? {
@@ -28,7 +28,7 @@ const method = options?.method?.toUpperCase() || 'GET';
         }),
 
         });
-        console.log("res", res);
+    console.log("res", res, options);
     let data = null;
     // Kiểm tra nếu status không nằm trong khoảng 200-299
     if (!res.status.toString().startsWith('2')) {

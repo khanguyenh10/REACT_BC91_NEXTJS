@@ -1,7 +1,7 @@
 import { ResponseData } from "../(viewModel)/ResponseData";
 import { LocationVM } from "../(viewModel)/LocationVM";
 import { fetcher } from "./fetcher"
-import { LocationSearchVM } from "@/(viewModel)/LocationSearchVM";
+import { SearchPaginVM } from "@/(viewModel)/SearchPaginVM";
 
 export const getLocations = async (): Promise<ResponseData<LocationVM[]> | null> => {
     return await fetcher('/vi-tri');
@@ -9,6 +9,6 @@ export const getLocations = async (): Promise<ResponseData<LocationVM[]> | null>
 export const getLocationById = async (id: number): Promise<ResponseData<LocationVM> | null> => {
     return await fetcher(`/vi-tri/${id}`);
 }
-export const getSearchLocations = async (pageIndex: number, pageSize: number, keyword: string): Promise<ResponseData<LocationSearchVM> | null> => {
+export const getSearchPaginLocations = async (pageIndex: number, pageSize: number, keyword: string): Promise<ResponseData<SearchPaginVM<LocationVM>> | null> => {
     return await fetcher(`/vi-tri/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`);
 }   

@@ -39,6 +39,9 @@ const userReducer = createSlice({
         setUser: (state: UserState, action: PayloadAction<any>) => {
             state.user = action.payload
         },
+        setUserAvatar: (state: UserState, action: PayloadAction<any>) => {
+            state.user.avatar = action.payload
+        },
         setIsLoggined: (state: UserState, action: PayloadAction<boolean>) => {
             state.isLoggedin = action.payload
             //logout
@@ -63,6 +66,6 @@ const userReducer = createSlice({
     }
 });
 
-export const { setUser, setLocationAt, setNumberOfGuests, setFromDate, setToDate, setIsLoggined } = userReducer.actions
+export const { setUser, setLocationAt, setNumberOfGuests, setFromDate, setToDate, setIsLoggined, setUserAvatar } = userReducer.actions
 
 export default userReducer.reducer

@@ -146,11 +146,6 @@ const RoomOrder = (props: Props) => {
                                     { label: "3", value: "3" },
                                 ]}
                             />
-                            {/* <select className="select  w-full " onChange={(e) => handleNumberOfGuests(parseInt(e.target.value))} value={numberOfGuests} name="numberOfGuests">
-                                <option value={1} >1 khách</option>
-                                <option value={2} >2 khách</option>
-                                <option value={3} >3 khách</option>
-                            </select> */}
 
                         </div>
 

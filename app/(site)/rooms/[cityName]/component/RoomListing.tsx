@@ -1,11 +1,11 @@
 import { getRoomsByLocationId } from "@/(api)/room";
-import CardItem from "./CardItem";
+import RoomItem from "./RoomItem";
 import { getCookie } from "@/utils/cookieServer";
 import { LOCATION_AT } from "@/utils/config";
 import { RoomVM } from "@/(viewModel)/RoomVM";
 import { ResponseData } from "@/(viewModel)/ResponseData";
 import RoomListingTitle from "./RoomListingTitle";
-import { getSearchLocations } from "@/(api)/location";
+import { getSearchPaginLocations } from "@/(api)/location";
 import { LocationVM } from "@/(viewModel)/LocationVM";
 import { stringToSlug } from "@/utils/text";
 import { redirect } from "next/navigation";
@@ -16,7 +16,7 @@ type Props = {
 
 export default async function Listing(props: Props) {
     const { cityName } = await props.params;
-    const response = await getSearchLocations(1, 8, '');;
+    const response = await getSearchPaginLocations(1, 8, '');;
     let locations = response?.content.data as LocationVM[];
     const location = locations.find(loc => stringToSlug(loc.tinhThanh) === cityName);
     if (!location) {
@@ -31,7 +31,7 @@ export default async function Listing(props: Props) {
                 Chỗ ở tại khu vực bạn đã chọn
             </h2>
             {roomsData.map((room) => (
-                <CardItem key={room.id} room={room} location={location} />
+                <RoomItem key={room.id} room={room} location={location} />
             ))}
         </div>
     )

@@ -27,7 +27,7 @@ export const registerAction = async (prevState: FormState, formData: FormData): 
             birthday: data.birthday as string,
             avatar: '',
             gender: toBoolean(data.gender),
-            role: 'USER',
+            role: 'ADMIN',
         };
         console.log("postData", postData);
         let response = await postSignUp(postData);
