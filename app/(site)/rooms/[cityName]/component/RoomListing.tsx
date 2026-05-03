@@ -23,7 +23,7 @@ export default async function Listing(props: Props) {
         redirect('/not-found');
     }
     const rooms = await getRoomsByLocationId(location.id) as ResponseData<RoomVM[]>;
-    const roomsData = rooms?.content.splice(0, 30) || [] as RoomVM[];
+    const roomsData = rooms?.content || [] as RoomVM[];
     return (
         <div className="p-6 space-y-4">
             <RoomListingTitle roomsData={roomsData} />
@@ -31,7 +31,7 @@ export default async function Listing(props: Props) {
                 Chỗ ở tại khu vực bạn đã chọn
             </h2>
             {roomsData.map((room) => (
-                <RoomItem key={room.id} room={room} location={location} />
+                <RoomItem key={room.id} room={room} />
             ))}
         </div>
     )

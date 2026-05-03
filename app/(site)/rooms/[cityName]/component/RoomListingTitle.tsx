@@ -1,6 +1,7 @@
 "use client";
 import useRedux from '@/(hook)/useRedux';
 import { RoomVM } from '@/(viewModel)/RoomVM';
+import dayjs from 'dayjs';
 import React from 'react'
 
 type Props = {
@@ -12,7 +13,7 @@ const RoomListingTitle = (props: Props) => {
     const { useAppSelector } = useRedux();
     const { locationAt, date: { fromDate, toDate } } = useAppSelector((state) => state.userReducer);
     return (
-        <p > Có {roomsData.length} chỗ ở tại {locationAt?.tinhThanh} • {fromDate} – {toDate}</p>
+        <p className=" text-lg" > Có {roomsData.length} chỗ ở tại {locationAt?.tinhThanh} • {dayjs(fromDate).format('DD/MM/YYYY')} - {dayjs(toDate).format('DD/MM/YYYY')} </p>
     )
 }
 

@@ -13,11 +13,9 @@ type Props = {
 const RentedRoomListing = async ({ roomId }: Props) => {
     const resRoomDetail = await getRoom(Number(roomId)) as ResponseData<RoomVM>;
     const roomDetail = resRoomDetail?.content as RoomVM;
-    const resLocation = await getLocationById(Number(roomDetail.maViTri)) as ResponseData<LocationVM>;
-    const locationDetail = resLocation?.content as LocationVM;
     return (
         <div className="rented-room-item">
-            <RoomItem room={roomDetail} location={locationDetail} />
+            <RoomItem room={roomDetail} />
         </div>
     )
 }

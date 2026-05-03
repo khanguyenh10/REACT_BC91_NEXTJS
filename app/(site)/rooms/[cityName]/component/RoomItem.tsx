@@ -4,19 +4,23 @@ import Image from 'next/image';
 import React from 'react'
 import Link from 'next/link';
 import { stringToSlug } from '@/utils/text';
+import { getLocationById } from '@/(api)/location';
+import { ResponseData } from '@/(viewModel)/ResponseData';
 type Props = {
     room: RoomVM;
-    location: LocationVM;
+    layout?: "vertical" | "horizontal";
 }
-export default function RoomItem({ room, location }: Props) {
+export default async function RoomItem({ room, layout = 'horizontal' }: Props) {
+    const resLocation = await getLocationById(Number(room.maViTri)) as ResponseData<LocationVM>;
+    const location = resLocation?.content as LocationVM;
     return (
-        <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className="flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 hover:text-secondary rounded-xl p-3 transition">
+        <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className={`${layout === "vertical" ? "flex-col" : ""} flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 hover:text-secondary hover:scale-105 rounded-xl p-3 transition`}>
             <img
                 alt={room.tenPhong}
                 width={125}
                 height={125}
                 src={room.hinhAnh.includes("http") ? room.hinhAnh : `https://placehold.co/300x200`}
-                className="w-48 h-32 object-cover rounded-xl"
+                className={layout === "vertical" ? "w-full h-48 object-cover rounded-xl " : "w-48 h-32 object-cover rounded-xl "}
             />
             <div className="flex flex-col justify-between">
                 <div>
