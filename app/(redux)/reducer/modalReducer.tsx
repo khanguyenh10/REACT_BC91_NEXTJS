@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModalState {
     isOpen: boolean;
-    contentType: "LOGIN" | "REGISTER" | "UPLOAD_AVATAR" | "UPDATE_INFO" | null;
+    contentType: "LOGIN" | "REGISTER" | "UPLOAD_AVATAR" | "UPDATE_PROFILE" | null;
 }
 
 const initialState: ModalState = {

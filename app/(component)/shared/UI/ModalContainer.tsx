@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from 'react'
 import Login from '@/(site)/(.)login/page';
 import Register from '@/(site)/(.)register/page';
 import UploadAvatar from '@/(site)/(.)upload-avatar/page';
+import UpdateProfile from '@/(site)/(.)update-profile/page';
 type Props = {}
 
 const ModalContainer = (props: Props) => {
@@ -27,6 +28,7 @@ const ModalContainer = (props: Props) => {
         if (contentType === "LOGIN") return <Login />;
         if (contentType === "REGISTER") return <Register />
         if (contentType === "UPLOAD_AVATAR") return <UploadAvatar />
+        if (contentType === "UPDATE_PROFILE") return <UpdateProfile />
     }
     return (
         <div>

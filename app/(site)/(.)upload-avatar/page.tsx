@@ -1,8 +1,6 @@
 "use client";
-import { loginAction } from '@/(api)/actions/loginAction';
-import { uploadAvatarAction } from '@/(api)/actions/uploadAvatar';
+import { uploadAvatarAction } from '@/(api)/actions/uploadAvatarAction';
 import LoadingSpinner from '@/(component)/shared/UI/LoadingSpinner';
-import PasswordInput from '@/(component)/shared/UI/PasswordInput';
 import useRedux from '@/(hook)/useRedux';
 import useServerAction from '@/(hook)/useServerAction';
 import { closeModal, openModal } from '@/(redux)/reducer/modalReducer';

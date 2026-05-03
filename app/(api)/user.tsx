@@ -20,6 +20,7 @@ export const postUser = async (data: UserVM) => {
     });
 }
 export const putUser = async (userId: number, data: UserVM) => {
+    console.log("putUser", data, userId);
     return fetcher(`/users/${userId}`, {
         method: 'PUT',
         body: JSON.stringify(data),

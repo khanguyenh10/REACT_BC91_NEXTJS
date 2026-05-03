@@ -20,7 +20,7 @@ export default async function RoomItem({ room, layout = 'horizontal' }: Props) {
                 width={125}
                 height={125}
                 src={room.hinhAnh.includes("http") ? room.hinhAnh : `https://placehold.co/300x200`}
-                className={layout === "vertical" ? "w-full h-48 object-cover rounded-xl " : "w-48 h-32 object-cover rounded-xl "}
+                className={layout === "vertical" ? "w-full h-48 object-cover rounded-xl " : "w-48 h-32 object-cover rounded-xl  "}
             />
             <div className="flex flex-col justify-between">
                 <div>

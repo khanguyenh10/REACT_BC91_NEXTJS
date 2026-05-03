@@ -39,7 +39,7 @@ const UpdateInfo = ({ user, userCreatedAt }: Props) => {
                 <p className="text-sm text-gray-500">
                     Bắt đầu tham gia vào {dayjs(userCreatedAt).format("DD/MM/YYYY")}
                 </p>
-                <button className="btn btn-link p-0 mt-1" onClick={() => dispatch(openModal("UPDATE_INFO"))}>
+                <button className="btn btn-link p-0 mt-1" onClick={() => dispatch(openModal("UPDATE_PROFILE"))}>
                     Chỉnh sửa hồ sơ
                 </button>
             </div>
