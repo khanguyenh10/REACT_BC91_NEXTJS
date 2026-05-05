@@ -42,6 +42,9 @@ const HeaderHome = ({ isLoggedin }: Props) => {
                     <li>
                         <Link href={`/profile/${user.id}`} className="flex items-center gap-2"><UserIcon className="w-6 h-6" /> <span>{user.name}</span></Link>
                     </li>
+                    {user.role === "ADMIN" && <li>
+                        <Link href={`/admin`} className="flex items-center gap-2"><UserIcon className="w-6 h-6" /> <span>Trang quản trị</span></Link>
+                    </li>}
                     <li>
                         <form action={logoutAction} className=" block">
                             <button className="w-full">
