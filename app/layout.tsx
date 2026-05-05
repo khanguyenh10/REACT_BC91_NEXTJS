@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import LoadRedux from "./(component)/shared/LoadRedux";
 import { PaperAirplaneIcon } from "@heroicons/react/16/solid";
 import ModalContainer from "./(component)/shared/UI/ModalContainer";
+import DrawerContainer from "./(component)/shared/UI/DrawerContainer";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <>
             {children}
             <ModalContainer />
+            <DrawerContainer />
           </>
         </LoadRedux>
         <ToastContainer />
