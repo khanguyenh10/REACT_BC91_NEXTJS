@@ -28,7 +28,6 @@ const method = options?.method?.toUpperCase() || 'GET';
         }),
 
         });
-    console.log("dataPost",  options);
     let data = null;
     // Kiểm tra nếu status không nằm trong khoảng 200-299
     if (!res.status.toString().startsWith('2')) {

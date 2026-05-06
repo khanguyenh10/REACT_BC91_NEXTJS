@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./reducer/userReducer";
 import modalReducer from "./reducer/modalReducer";
+import drawerReducer from "./reducer/drawerReducer";
 export const store = configureStore({
     reducer: {
         userReducer,
-        modalReducer
+        modalReducer,
+        drawerReducer,
     }
 });
 

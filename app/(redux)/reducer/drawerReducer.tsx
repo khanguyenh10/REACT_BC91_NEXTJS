@@ -1,33 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ModalState {
-    isOpen: boolean;
-    data: object;
-    contentType: "ADD" | "UPDATE" | "DELETE" | null
+export interface DrawserState {
+    isOpen?: boolean;
+    data?: object;
+    action: "ADD" | "EDIT" | null,
+    type: "ROOMS" | "USERS" | "LOCATIONS" | 'ROOM_ORDERS' | null
 }
 
-const initialState: ModalState = {
+const initialState: DrawserState = {
     isOpen: false,
-    contentType: null,
-    data: {}
+    type: null,
+    data: {},
+    action: null
 };
 
-const modalReducer = createSlice({
-    name: 'modalReducer',
+const drawerReducer = createSlice({
+    name: 'drawerReducer',
     initialState,
     reducers: {
-        openModal: (state, action: PayloadAction<ModalState>) => {
+        openDrawer: (state, action: PayloadAction<DrawserState>) => {
             state.isOpen = true;
-            state.contentType = action.payload.contentType;
-            state.data = {};
+            state.type = action.payload.type;
+            state.data = action.payload.data;
+            state.action = action.payload.action
         },
-        closeModal: (state) => {
+        closeDrawser: (state) => {
             state.isOpen = false;
-            state.contentType = null;
+            state.type = null;
             state.data = {};
+            state.action = null
         },
     },
 });
 
-export const { openModal, closeModal } = modalReducer.actions;
-export default modalReducer.reducer;
+export const { openDrawer, closeDrawser } = drawerReducer.actions;
+export default drawerReducer.reducer;

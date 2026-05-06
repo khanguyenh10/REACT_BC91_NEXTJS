@@ -42,5 +42,5 @@ export const postAvatar = async (file: File): Promise<ResponseData<UserVM> | nul
     });
 }
 export const getSearchPaginUsers = async (pageIndex: number, pageSize: number, keyword: string): Promise<ResponseData<SearchPaginVM<UserVM>> | null> => {
-    return await fetcher(`/vi-tri/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`);
+    return await fetcher(`/users/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`);
 }   

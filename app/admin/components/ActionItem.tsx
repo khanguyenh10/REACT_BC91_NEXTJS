@@ -2,17 +2,18 @@
 import useRedux from '@/(hook)/useRedux';
 import useRouting from '@/(hook)/useRouting';
 import { DrawserState, openDrawer } from '@/(redux)/reducer/drawerReducer';
+import { PencilIcon, TrashIcon } from '@heroicons/react/16/solid'
 import React from 'react'
 
 type Props = {
-    name: string,
+    data: any
 }
 
-const HeaderTitle = ({ name }: Props) => {
+const ItemAction = ({ data }: Props) => {
     const { pathname } = useRouting();
     const { dispatch } = useRedux();
-    const handleAdd = () => {
-        let action: DrawserState = { action: "ADD", type: null };
+    const handleEdit = () => {
+        let action: DrawserState = { action: "EDIT", type: null, data };
         console.log('pathname', pathname);
         if (pathname.startsWith("/admin/rooms")) {
             action.type = "USERS";
@@ -26,13 +27,15 @@ const HeaderTitle = ({ name }: Props) => {
         dispatch(openDrawer(action));
     }
     return (
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-            <h1 className="text-xl md:text-2xl font-bold">Quản lý {name}</h1>
-            <label htmlFor="drawer-action" className="btn btn-info text-white w-full md:w-auto" onClick={handleAdd}>
-                + Thêm {name}
+        <>
+            <label htmlFor='drawer-action' className="btn btn-sm btn-warning text-warning-content">
+                <PencilIcon className="w-4 h-4" onClick={handleEdit} />
             </label>
-        </div>
+            <button className="btn btn-sm  btn-error text-error-content">
+                <TrashIcon className="w-4 h-4" />
+            </button>
+        </>
     )
 }
 
-export default HeaderTitle
+export default ItemAction
