@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface DrawserState {
     isOpen?: boolean;
-    data?: object;
+    dataDetail?: any;
     action: "ADD" | "EDIT" | null,
     type: "ROOMS" | "USERS" | "LOCATIONS" | 'ROOM_ORDERS' | null
 }
@@ -10,7 +10,7 @@ export interface DrawserState {
 const initialState: DrawserState = {
     isOpen: false,
     type: null,
-    data: {},
+    dataDetail: {},
     action: null
 };
 
@@ -21,13 +21,13 @@ const drawerReducer = createSlice({
         openDrawer: (state, action: PayloadAction<DrawserState>) => {
             state.isOpen = true;
             state.type = action.payload.type;
-            state.data = action.payload.data;
+            state.dataDetail = action.payload.dataDetail;
             state.action = action.payload.action
         },
         closeDrawser: (state) => {
             state.isOpen = false;
             state.type = null;
-            state.data = {};
+            state.dataDetail = {};
             state.action = null
         },
     },

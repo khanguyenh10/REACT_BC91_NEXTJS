@@ -27,7 +27,7 @@ export const putUser = async (userId: number, data: UserVM) => {
     });
 }
 export const deleteUser = async (userId: number) => {
-    return fetcher(`/users/${userId}`, {
+    return fetcher(`/users?id=${userId}`, {
         method: 'DELETE',
         body: null,
     });

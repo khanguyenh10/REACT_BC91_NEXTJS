@@ -39,9 +39,3 @@ export const ProfileSchema = z.object({
     birthday: z.string().trim().min(1, 'Ngày sinh không được để trống'),
 })
 
-export const UserSchema = z.object({
-    name: z.string().trim().min(3, 'Tên người dùng phải ≥ 3 ký tự'),
-    email: z.string().trim().email('Email không hợp lệ'),
-    phone: z.string().regex(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, 'Số định danh phải 10 ký tự'),
-    birthday: z.string().trim().min(1, 'Ngày sinh không được để trống'),
-})

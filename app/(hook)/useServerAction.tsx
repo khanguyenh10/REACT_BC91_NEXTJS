@@ -21,9 +21,10 @@ const useServerAction = (action: any, initialState?: FormState) => {
 
         if (state.status === 'success') {
             setTimeout(() => {
-                toastSuccess("Thành công");
+                toastSuccess(state.message as string || "Thành công");
             }, 100);
         }
+        console.log("state", state)
         if (state.status === 'error') {
             setTimeout(() => {
                 toastError(state.message as string);

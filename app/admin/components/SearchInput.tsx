@@ -15,6 +15,7 @@ const SearchInput = ({ query }: Props) => {
 
         const params = new URLSearchParams(searchParams);
         params.set('query', keyword);
+        params.set('page', "1");
         navigate.push(`?${params.toString()}`);
     }
 

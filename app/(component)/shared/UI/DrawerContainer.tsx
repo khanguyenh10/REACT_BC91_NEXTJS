@@ -1,6 +1,6 @@
 "use client";
 import useRedux from '@/(hook)/useRedux';
-import { DrawserState } from '@/(redux)/reducer/drawerReducer';
+import { closeDrawser, DrawserState } from '@/(redux)/reducer/drawerReducer';
 import { RootState } from '@/(redux)/store';
 import UserForm from '@/admin/UserForm';
 import React from 'react'
@@ -8,9 +8,9 @@ import React from 'react'
 type Props = {}
 
 const DrawerContainer = (props: Props) => {
-    const { useAppSelector } = useRedux();
+    const { useAppSelector, dispatch } = useRedux();
     const state: DrawserState = useAppSelector((state: RootState) => state.drawerReducer);
-    const { type } = state;
+    const { type, isOpen } = state;
     const renderContent = () => {
         switch (type) {
             case 'USERS':
@@ -38,13 +38,13 @@ const DrawerContainer = (props: Props) => {
         <>
 
             <div className="drawer drawer-end">
-                <input id="drawer-action" type="checkbox" className="drawer-toggle" />
+                <input id="drawer-action" type="checkbox" className="drawer-toggle" checked={isOpen} onChange={() => { }} />
                 <div className="drawer-content">
                     {/* Page content here */}
                     {/* <label htmlFor="drawer-action" className="drawer-button btn btn-primary">Open drawer</label> */}
                 </div>
                 <div className="drawer-side">
-                    <label htmlFor="drawer-action" aria-label="close sidebar" className="drawer-overlay"></label>
+                    <label htmlFor="drawer-action" aria-label="close sidebar" className="drawer-overlay" onClick={() => dispatch(closeDrawser())}></label>
                     <div className="menu bg-white min-h-full  p-4">
                         {renderContent()}
                     </div>

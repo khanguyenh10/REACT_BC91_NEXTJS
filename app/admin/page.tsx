@@ -27,9 +27,11 @@ const page = async (props: Props) => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Username</th>
-                            <th>Birthday</th>
+                            <th>Tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Số điện thoại</th>
                             <th>Email</th>
+                            <th>Giới tính</th>
                             <th>Role</th>
                             <th>Hành động</th>
                         </tr>
@@ -40,7 +42,18 @@ const page = async (props: Props) => {
                                 <td>{user.id}</td>
                                 <td className="font-semibold">{user.name}</td>
                                 <td>{dayjs(user.birthday).format("DD/MM/YYYY")}</td>
+                                <td className="">{user.phone}</td>
                                 <td className="text-blue-600">{user.email}</td>
+                                <td>
+                                    <span
+                                        className={`font-bold badge ${user.gender.toString() === "true"
+                                            ? "badge-primary"
+                                            : "badge-secondary"
+                                            }`}
+                                    >
+                                        {user.gender ? "Nam" : "Nữ"}
+                                    </span>
+                                </td>
                                 <td>
                                     <span
                                         className={`font-bold ${user.role === "ADMIN"
