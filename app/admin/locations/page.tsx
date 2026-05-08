@@ -1,10 +1,6 @@
 import React from 'react'
-import { PencilIcon, TrashIcon } from '@heroicons/react/16/solid';
-import { getSearchPaginUsers } from '@/(api)/user';
 import { ResponseData } from '@/(viewModel)/ResponseData';
 import { SearchPaginVM } from '@/(viewModel)/SearchPaginVM';
-import { UserVM } from '@/(viewModel)/UserVM';
-import dayjs from 'dayjs';
 import { getSearchPaginLocations } from '@/(api)/location';
 import { LocationVM } from '@/(viewModel)/LocationVM';
 import HeaderTitle from '../components/HeaderTitle';
@@ -29,10 +25,11 @@ const page = async (props: Props) => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Image</th>
+                            <th>Hình ảnh</th>
                             <th>Vị trí</th>
                             <th>Tỉnh thành</th>
                             <th>Quốc gia</th>
+                            <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>

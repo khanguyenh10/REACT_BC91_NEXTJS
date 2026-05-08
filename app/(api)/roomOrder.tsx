@@ -23,7 +23,7 @@ export const putRoomOrder = async (roomOrderId: number, data: RoomOrderVM): Prom
 }
 export const deleteRoomOrder = async (roomOrderId: number): Promise<ResponseData<RoomOrderVM> | null> => {
     return await fetcher(`/dat-phong/${roomOrderId}`, {
-        method: 'PUT',
+        method: 'DELETE',
         body: null
     });
 }
@@ -31,5 +31,5 @@ export const getRoomOrdersByUserId = async (userId: number): Promise<ResponseDat
     return await fetcher(`/dat-phong/lay-theo-nguoi-dung/${userId}`);
 }
 export const getSearchPaginRoomOrders = async (pageIndex: number, pageSize: number, keyword: string): Promise<ResponseData<SearchPaginVM<RoomOrderVM>> | null> => {
-    return await fetcher(`/vi-tri/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`);
+    return await fetcher(`/dat-phong/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`);
 }   

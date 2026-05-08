@@ -3,6 +3,7 @@ import useRedux from '@/(hook)/useRedux';
 import { closeDrawser, DrawserState } from '@/(redux)/reducer/drawerReducer';
 import { RootState } from '@/(redux)/store';
 import LocationForm from '@/admin/locations/LocationForm';
+import RoomForm from '@/admin/rooms/RoomForm';
 import UserForm from '@/admin/UserForm';
 import React from 'react'
 
@@ -24,7 +25,7 @@ const DrawerContainer = (props: Props) => {
                 )
             case 'ROOMS':
                 return (
-                    <div>ROOMS</div>
+                    <RoomForm />
                 )
             case 'ROOM_ORDERS':
                 return (

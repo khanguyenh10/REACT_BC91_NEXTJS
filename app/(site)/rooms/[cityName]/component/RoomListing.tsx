@@ -22,7 +22,7 @@ export default async function Listing(props: Props) {
     if (!location) {
         redirect('/not-found');
     }
-    const rooms = await getRoomsByLocationId(location.id) as ResponseData<RoomVM[]>;
+    const rooms = await getRoomsByLocationId(location.id as number) as ResponseData<RoomVM[]>;
     const roomsData = rooms?.content || [] as RoomVM[];
     return (
         <div className="p-6 space-y-4">

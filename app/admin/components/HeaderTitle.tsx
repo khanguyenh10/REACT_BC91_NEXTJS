@@ -15,7 +15,7 @@ const HeaderTitle = ({ name }: Props) => {
         let action: DrawserState = { action: "ADD", type: null };
         console.log('pathname', pathname);
         if (pathname.startsWith("/admin/rooms")) {
-            action.type = "USERS";
+            action.type = "ROOMS";
         } else if (pathname.startsWith("/admin/room-orders")) {
             action.type = "ROOM_ORDERS";
         } else if (pathname.startsWith("/admin/locations")) {
