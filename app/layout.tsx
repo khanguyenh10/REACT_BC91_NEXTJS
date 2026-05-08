@@ -26,6 +26,7 @@ export default function RootLayout({
       lang="en"
       data-theme="mytheme"
       className={`${openSans.variable} `}
+      data-scroll-behavior="smooth"
     >
       <head>
         <link rel="icon" href={"../favicon.png"} />

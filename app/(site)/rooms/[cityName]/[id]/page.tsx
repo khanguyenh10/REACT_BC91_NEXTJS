@@ -4,7 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import { RoomVM } from '@/(viewModel)/RoomVM'
 import { ResponseData } from '@/(viewModel)/ResponseData'
-import { getLocationById } from '@/(api)/location'
+import { getLocation } from '@/(api)/location'
 import { LocationVM } from '@/(viewModel)/LocationVM'
 import Conveniences from './component/Conveniences'
 import Comments from './component/Comments'
@@ -23,7 +23,7 @@ const page = async (props: Props) => {
     const { id, cityName } = await props.params;
     const resRoomDetail = await getRoom(Number(id)) as ResponseData<RoomVM>;
     const roomDetail = resRoomDetail?.content as RoomVM;
-    const resLocation = await getLocationById(Number(roomDetail.maViTri)) as ResponseData<LocationVM>;
+    const resLocation = await getLocation(Number(roomDetail.maViTri)) as ResponseData<LocationVM>;
     const locationDetail = resLocation?.content as LocationVM;
     const resComments = await getCommentsByRoomId(roomDetail.id) as ResponseData<CommentVMByRoomID[]>;
     const comments = resComments?.content || [] as CommentVMByRoomID[];

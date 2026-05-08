@@ -1,4 +1,5 @@
 "use client";
+import { removeLocationAction } from '@/(api)/actions/admin/locationAction';
 import { removeUserAction } from '@/(api)/actions/admin/userAction';
 import useRedux from '@/(hook)/useRedux';
 import useRouting from '@/(hook)/useRouting';
@@ -36,7 +37,7 @@ const ItemAction = ({ data }: Props) => {
                     if (state.type === "USERS") {
                         await removeUserAction(data.id, pathname);
                     } else if (state.type == "LOCATIONS") {
-                        // await removeUserAction(data.id, pathname);
+                        await removeLocationAction(data.id, pathname);
                     }
                     toastSuccess('Xoá thành công');
                 } catch (error) {

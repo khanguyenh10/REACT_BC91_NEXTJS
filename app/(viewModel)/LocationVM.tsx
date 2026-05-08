@@ -1,5 +1,5 @@
 export interface LocationVM {
-    id: number;
+    id?: number;
     tenViTri: string;
     tinhThanh: string;
     quocGia: string;

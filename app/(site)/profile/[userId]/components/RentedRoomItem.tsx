@@ -1,7 +1,5 @@
-import { getLocationById } from '@/(api)/location'
 import { getRoom } from '@/(api)/room'
 import RoomItem from '@/(site)/rooms/[cityName]/component/RoomItem'
-import { LocationVM } from '@/(viewModel)/LocationVM'
 import { ResponseData } from '@/(viewModel)/ResponseData'
 import { RoomVM } from '@/(viewModel)/RoomVM'
 import React from 'react'

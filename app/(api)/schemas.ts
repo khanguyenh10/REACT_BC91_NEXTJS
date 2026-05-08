@@ -39,3 +39,9 @@ export const ProfileSchema = z.object({
     birthday: z.string().trim().min(1, 'Ngày sinh không được để trống'),
 })
 
+export const LocationSchema = z.object({
+    name: z.string().trim().min(3, 'Tên vị trí phải ≥ 3 ký tự'),
+    nation: z.string().trim().min(3, 'Tên quốc gia phải ≥ 3 ký tự'),
+    country: z.string().trim().min(3, 'Tên tỉnh thành phải ≥ 3 ký tự'),
+})
+

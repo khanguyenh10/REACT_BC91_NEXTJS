@@ -4,14 +4,14 @@ import Image from 'next/image';
 import React from 'react'
 import Link from 'next/link';
 import { stringToSlug } from '@/utils/text';
-import { getLocationById } from '@/(api)/location';
+import { getLocation } from '@/(api)/location';
 import { ResponseData } from '@/(viewModel)/ResponseData';
 type Props = {
     room: RoomVM;
     layout?: "vertical" | "horizontal";
 }
 export default async function RoomItem({ room, layout = 'horizontal' }: Props) {
-    const resLocation = await getLocationById(Number(room.maViTri)) as ResponseData<LocationVM>;
+    const resLocation = await getLocation(Number(room.maViTri)) as ResponseData<LocationVM>;
     const location = resLocation?.content as LocationVM;
     return (
         <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className={`${layout === "vertical" ? "flex-col" : ""} flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 hover:text-secondary hover:scale-105 rounded-xl p-3 transition`}>
