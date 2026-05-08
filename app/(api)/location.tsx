@@ -31,7 +31,7 @@ export const postLocationThumb = async (file: File, locationId: number): Promise
     const formData = new FormData();
     formData.append('formFile', file);
     formData.append('maViTri', locationId.toString());
-    return await fetcher(`/users/upload-avatar`, {
+    return await fetcher(`/vi-tri/upload-hinh-vitri`, {
         method: 'POST',
         body: formData,
     });

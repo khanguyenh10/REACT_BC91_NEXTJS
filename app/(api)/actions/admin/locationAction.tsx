@@ -25,15 +25,16 @@ export const locationAction = async (prevState: FormState, formData: FormData): 
             tenViTri: data.name as string,
             tinhThanh: data.country as string,
             quocGia: data.nation as string,
-            hinhAnh: data.thumb as string
         };
 
         if (action == 'ADD') {
             let response = await postLocation(postData);
             let { id } = response?.content as LocationVM;
-            let responseThumb = await postLocationThumb(data.file as File, id as number);
+            let responseThumb = await postLocationThumb(data.thumb as File, id as number);
         } else {
-            let responseThumb = await postLocationThumb(data.file as File, postData.id as number);
+            if ((data.thumb instanceof File)) {
+                let responseThumb = await postLocationThumb(data.thumb as File, postData.id as number);
+            }
             let response = await putLocation(postData.id as number, postData);
         }
         revalidatePath(data.pathname as string);

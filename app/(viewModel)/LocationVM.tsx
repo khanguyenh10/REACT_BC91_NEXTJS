@@ -3,6 +3,6 @@ export interface LocationVM {
     tenViTri: string;
     tinhThanh: string;
     quocGia: string;
-    hinhAnh: string;
+    hinhAnh?: string;
     time?: string;
 }

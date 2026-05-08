@@ -40,7 +40,7 @@ const page = async (props: Props) => {
                             <tr key={location.id}>
                                 <td>{location.id}</td>
                                 <td className="font-semibold">
-                                    <Image src={location.hinhAnh.includes("http") ? location.hinhAnh : 'https://placehold.co/300x200'} alt={location.hinhAnh} width={100} height={100} className=" object-cover w-36 h-16" />
+                                    <Image src={location.hinhAnh?.includes("http") ? location.hinhAnh : 'https://placehold.co/300x200'} alt={location.hinhAnh || '...'} width={100} height={100} className=" object-cover w-36 h-16" />
                                 </td>
                                 <td>{location.tenViTri}</td>
                                 <td>{location.tinhThanh}</td>

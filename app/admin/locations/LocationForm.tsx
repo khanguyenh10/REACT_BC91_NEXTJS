@@ -55,7 +55,7 @@ const LocationForm = (props: Props) => {
                     </div>}
                     {!photoThumb && <label className="label block">Hình ảnh</label>}
                     <label htmlFor='upload-thumb' className='btn btn-secondary btn-outline'>
-                        <input id='upload-thumb' type="file" className='file-input file-input-secondary my-5 hidden' name="avatar" accept="image/*" onChange={(e) => setPhotoThumb(URL.createObjectURL(e.target.files![0]))} />
+                        <input id='upload-thumb' type="file" className='file-input file-input-secondary my-5 hidden' name="thumb" accept="image/*" onChange={(e) => setPhotoThumb(URL.createObjectURL(e.target.files![0]))} />
                         +
                     </label>
                     <p className='text-error'>{errorThumb}</p>
