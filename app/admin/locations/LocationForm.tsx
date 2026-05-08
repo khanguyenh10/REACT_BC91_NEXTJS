@@ -54,7 +54,7 @@ const LocationForm = (props: Props) => {
                         </div>
                     </div>}
                     {!photoThumb && <label className="label block">Hình ảnh</label>}
-                    <label htmlFor='upload-thumb' className='btn btn-secondary btn-outline'>
+                    <label htmlFor='upload-thumb' className='btn btn-secondary btn-outline my-2'>
                         <input id='upload-thumb' type="file" className='file-input file-input-secondary my-5 hidden' name="thumb" accept="image/*" onChange={(e) => setPhotoThumb(URL.createObjectURL(e.target.files![0]))} />
                         +
                     </label>
@@ -63,17 +63,17 @@ const LocationForm = (props: Props) => {
 
                 <div>
                     <label className="label">Tên</label>
-                    <input type="text" className="input" placeholder="Điền tên vị trí" name="name" defaultValue={data?.name || dataDetail?.name} />
+                    <input type="text" className="input" placeholder="Điền tên vị trí" name="name" defaultValue={data?.name || dataDetail?.tenViTri} autoComplete="name" />
                     <p className='text-error'>{errors?.name}</p>
                 </div>
                 <div>
                     <label className="label">Tỉnh thành</label>
-                    <input type="text" className="input" placeholder="Điền tỉnh thành" name="country" defaultValue={data?.country || dataDetail?.country} />
+                    <input type="text" className="input" placeholder="Điền tỉnh thành" name="country" defaultValue={data?.country || dataDetail?.tinhThanh} autoComplete="country" />
                     <p className='text-error'>{errors?.country}</p>
                 </div>
                 <div>
                     <label className="label">Quốc gia</label>
-                    <input type="text" className="input" placeholder="Điền quốc gia" name="nation" defaultValue={data?.nation || dataDetail?.nation} />
+                    <input type="text" className="input" placeholder="Điền quốc gia" name="nation" defaultValue={data?.nation || dataDetail?.quocGia} autoComplete="nation" />
                     <p className='text-error'>{errors?.nation}</p>
                 </div>
                 <div className='flex gap-2 justify-end items-center mt-2'>

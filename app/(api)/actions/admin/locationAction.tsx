@@ -32,10 +32,11 @@ export const locationAction = async (prevState: FormState, formData: FormData): 
             let { id } = response?.content as LocationVM;
             let responseThumb = await postLocationThumb(data.thumb as File, id as number);
         } else {
-            if ((data.thumb instanceof File)) {
-                let responseThumb = await postLocationThumb(data.thumb as File, postData.id as number);
+            let id = data.id as string;
+            if ((data.thumb instanceof File && data.thumb.size > 0)) {
+                let responseThumb = await postLocationThumb(data.thumb as File, parseInt(id));
             }
-            let response = await putLocation(postData.id as number, postData);
+            let response = await putLocation(parseInt(id), postData);
         }
         revalidatePath(data.pathname as string);
         return prevState = {

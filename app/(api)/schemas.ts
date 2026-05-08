@@ -19,8 +19,8 @@ export const RegisterSchema = z.object({
 
 export const ImageSchema = z
   .instanceof(File)
-  .refine((file) => file.size <= 2 * 1024 * 1024, {
-    message: "Ảnh phải nhỏ hơn 2MB",
+  .refine((file) => file.size <= 1 * 1024 * 1024, {
+    message: "Ảnh phải nhỏ hơn 1MB",
   })
   .refine(
     (file) =>

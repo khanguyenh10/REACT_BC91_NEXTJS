@@ -16,6 +16,7 @@ export const postLocation = async (data: LocationVM): Promise<ResponseData<Locat
     });
 }
 export const putLocation = async (locationId: number, data: LocationVM) => {
+    console.log("data thub", locationId, data);
     return fetcher(`/vi-tri/${locationId}`, {
         method: 'PUT',
         body: JSON.stringify(data),
@@ -30,8 +31,7 @@ export const deleteLocation = async (locationId: number) => {
 export const postLocationThumb = async (file: File, locationId: number): Promise<ResponseData<LocationVM> | null> => {
     const formData = new FormData();
     formData.append('formFile', file);
-    formData.append('maViTri', locationId.toString());
-    return await fetcher(`/vi-tri/upload-hinh-vitri`, {
+    return await fetcher(`/vi-tri/upload-hinh-vitri?maViTri=${locationId}`, {
         method: 'POST',
         body: formData,
     });
