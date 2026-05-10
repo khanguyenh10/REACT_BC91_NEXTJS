@@ -25,7 +25,7 @@ const page = async (props: Props) => {
     const roomDetail = resRoomDetail?.content as RoomVM;
     const resLocation = await getLocation(Number(roomDetail.maViTri)) as ResponseData<LocationVM>;
     const locationDetail = resLocation?.content as LocationVM;
-    const resComments = await getCommentsByRoomId(roomDetail.id) as ResponseData<CommentVMByRoomID[]>;
+    const resComments = await getCommentsByRoomId(roomDetail.id as number) as ResponseData<CommentVMByRoomID[]>;
     const comments = resComments?.content || [] as CommentVMByRoomID[];
     const resRoomOrders = await getRoomOrders() as ResponseData<RoomOrderVM[]>;
     const roomsOrder = resRoomOrders?.content || [] as RoomOrderVM[];
@@ -50,7 +50,7 @@ const page = async (props: Props) => {
                         alt="Room Image"
                         width={800}
                         height={600}
-                        src={roomDetail.hinhAnh}
+                        src={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}
                         className="w-full h-auto object-cover"
                     />
 

@@ -21,8 +21,9 @@ const page = async (props: Props) => {
     let roomOrders = resRoomOrders.content as RoomOrderVM[];
     let pageIndex = parseInt(page);
     let pageSize = 10;
-    let totalRow = Math.ceil(roomOrders.length / pageSize);
-    let dataRoomOrder = roomOrders.filter(roomOrder => roomOrder.maNguoiDung.toString().includes(query)).slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+    let dataRoomOrderFilter = roomOrders.filter(roomOrder => roomOrder.maNguoiDung.toString().includes(query) || dayjs(roomOrder.ngayDen).format('DD/MM/YYYY').indexOf(query) !== -1);
+    let dataRoomOrder = dataRoomOrderFilter.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+    let totalRow = dataRoomOrderFilter.length;
     return (
         <div className="p-4 md:p-6 bg-base-200 min-h-screen">
             <HeaderTitle name="Đặt Phòng" />

@@ -31,7 +31,7 @@ const RoomOrder = (props: Props) => {
     const { room, comments, roomsOrder } = props;
     const averageRating = comments.length > 0 ? (comments.reduce((sum, comment) => sum + comment.saoBinhLuan, 0) / comments.length).toFixed(2) : '0';
     const { useAppSelector, dispatch } = useRedux();
-    const { date: { fromDate, toDate }, numberOfGuests } = useAppSelector((state) => state.userReducer);
+    const { date: { fromDate, toDate }, numberOfGuests, user } = useAppSelector((state) => state.userReducer);
     const countNight = dayjs(toDate).diff(dayjs(fromDate), 'day');
 
     // checkin và checkout ko cùng 1 ngày, checkin vào 12h
@@ -129,6 +129,7 @@ const RoomOrder = (props: Props) => {
                             <input type="hidden" name="roomId" value={room.id} />
                             <input type="hidden" name="isRoomOrdered" value={isRoomOrdered.toString()} />
                             <input type="hidden" name="pathname" value={pathname} />
+                            <input type="hidden" name="userId" value={user?.id} />
                         </div>
 
                         {/* Guest */}
@@ -145,6 +146,7 @@ const RoomOrder = (props: Props) => {
                                     { label: "2", value: "2" },
                                     { label: "3", value: "3" },
                                 ]}
+                                name='numberOfGuests'
                             />
 
                         </div>

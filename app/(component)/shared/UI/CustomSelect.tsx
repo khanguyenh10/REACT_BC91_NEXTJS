@@ -12,6 +12,7 @@ type Props = {
     value?: string;
     placeholder?: string;
     onChange: (value: string) => void;
+    name: string;
 };
 
 export default function CustomSelect({
@@ -19,6 +20,7 @@ export default function CustomSelect({
     value,
     placeholder = "Select...",
     onChange,
+    name
 }: Props) {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -46,6 +48,7 @@ export default function CustomSelect({
                 <span className={selected ? "" : "text-gray-400"}>
                     {selected?.label || placeholder}
                 </span>
+                <input type="hidden" value={value} name={name} />
             </div>
 
             {/* Dropdown */}

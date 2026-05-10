@@ -39,6 +39,7 @@ export default function Pagination({
     };
 
     const pages = getPages();
+    console.log(pages);
 
     const createLink = (p: number) => {
         const params = new URLSearchParams();

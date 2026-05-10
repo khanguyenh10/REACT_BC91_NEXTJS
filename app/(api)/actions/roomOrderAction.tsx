@@ -28,7 +28,7 @@ export const roomOrderAction = async (prevState: FormState, formData: FormData) 
     }
     try {
         let postData: RoomOrderVM = {
-            maNguoiDung: 0,
+            maNguoiDung: parseInt(data.userId as string),
             maPhong: Number(data.roomId),
             ngayDen: data.fromDate as string,
             ngayDi: data.toDate as string,
@@ -36,13 +36,14 @@ export const roomOrderAction = async (prevState: FormState, formData: FormData) 
         };
         await postRoomOrder(postData);
         //update lại data
-        // revalidatePath(data.pathname as string);
+        revalidatePath(data.pathname as string);
         return resData = {
             status: "success",
             message: 'Đặt phòng thành công'
         }
 
     } catch (error) {
+        console.log("error", error);
         return {
             status: "error",
             message: 'Đã xảy ra lỗi khi đặt phòng',
