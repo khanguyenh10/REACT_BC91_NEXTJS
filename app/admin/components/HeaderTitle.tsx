@@ -6,9 +6,10 @@ import React from 'react'
 
 type Props = {
     name: string,
+    data?: any
 }
 
-const HeaderTitle = ({ name }: Props) => {
+const HeaderTitle = ({ name, data }: Props) => {
     const { pathname } = useRouting();
     const { dispatch } = useRedux();
     const handleAdd = () => {
@@ -16,6 +17,7 @@ const HeaderTitle = ({ name }: Props) => {
         console.log('pathname', pathname);
         if (pathname.startsWith("/admin/rooms")) {
             action.type = "ROOMS";
+            action.dataDetail = { ...action.dataDetail, locations: data }
         } else if (pathname.startsWith("/admin/room-orders")) {
             action.type = "ROOM_ORDERS";
         } else if (pathname.startsWith("/admin/locations")) {

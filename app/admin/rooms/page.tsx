@@ -9,6 +9,8 @@ import { getSearchPaginRooms } from '@/(api)/room';
 import { RoomVM } from '@/(viewModel)/RoomVM';
 import { SearchPaginVM } from '@/(viewModel)/SearchPaginVM';
 import LocationInfo from './LocationInfo';
+import { getSearchPaginLocations } from '@/(api)/location';
+import { LocationVM } from '@/(viewModel)/LocationVM';
 type Props = {
     searchParams: Promise<{ query: string, page: string }> | { query: string, page: string }
 }
@@ -17,9 +19,11 @@ const page = async (props: Props) => {
     let { query = '', page = "1" } = await props.searchParams;
     let resRooms = await getSearchPaginRooms(parseInt(page), 10, query) as ResponseData<SearchPaginVM<RoomVM>>;
     let { data: rooms, pageIndex, pageSize, totalRow } = resRooms.content as SearchPaginVM<RoomVM>;
+    const response = await getSearchPaginLocations(1, 8, '');;
+    let locations = response?.content.data as LocationVM[];
     return (
         <div className="p-4 md:p-6 bg-base-200 min-h-screen">
-            <HeaderTitle name="Phòng" />
+            <HeaderTitle name="Phòng" data={locations} />
             <SearchInput query={query} />
             <div className="hidden md:block overflow-x-auto bg-base-100 rounded-xl shadow">
                 <table className="table">
@@ -40,9 +44,11 @@ const page = async (props: Props) => {
                                     <Image src={room.hinhAnh?.includes("http") ? room.hinhAnh : 'https://placehold.co/300x200'} alt={room.hinhAnh || '...'} width={300} height={300} className=" object-cover w-36 h-16" />
                                 </td>
                                 <td>{room.tenPhong}</td>
-                                <td>{room.maViTri && <LocationInfo locationId={room.maViTri} />}</td>
+                                <td>
+                                    <LocationInfo locationId={room.maViTri} />
+                                </td>
                                 <td className="flex gap-2">
-                                    <ActionItem data={room} />
+                                    <ActionItem data={{ ...room, locations }} />
                                 </td>
                             </tr>
                         ))}

@@ -10,6 +10,9 @@ import { toastError } from '@/utils/toast';
 import LabelAction from '../components/LabelAction';
 import Image from 'next/image';
 import { locationAction } from '@/(api)/actions/admin/locationAction';
+import ToggleCheckbox from '../components/ToggleCheckbox';
+import { roomAction } from '@/(api)/actions/admin/roomAction';
+import { toBoolean } from '@/utils/text';
 type Props = {}
 
 const LocationForm = (props: Props) => {
@@ -19,7 +22,7 @@ const LocationForm = (props: Props) => {
     const { action, dataDetail } = drawer;
     const [photoThumb, setPhotoThumb] = React.useState<string>(dataDetail?.hinhAnh || '');
     const [errorThumb, setErrorThumb] = React.useState<string>('');
-    const { state: { status, data, errors }, formAction, isPending } = useServerAction(locationAction);
+    const { state: { status, data, errors }, formAction, isPending } = useServerAction(roomAction);
     const { dispatch } = useRedux();
 
     useEffect(() => {
@@ -31,6 +34,7 @@ const LocationForm = (props: Props) => {
     const checkFormAction = (payload: FormData) => {
         if (!photoThumb) {
             setErrorThumb('Vui lòng úp hình ảnh');
+            return;
         } else {
             setErrorThumb('');
         }
@@ -38,7 +42,7 @@ const LocationForm = (props: Props) => {
     }
     return (
         <form action={checkFormAction}>
-            <fieldset className="fieldset rounded-box w-xs  p-4">
+            <fieldset className="fieldset rounded-box   p-4 max-w-[400px]">
                 <h1 className='text-xl  font-bold text-center '>
                     <LabelAction action={action} >
                         Phòng
@@ -60,21 +64,92 @@ const LocationForm = (props: Props) => {
                     </label>
                     <p className='text-error'>{errorThumb}</p>
                 </div>
-
-                <div>
-                    <label className="label">Tên</label>
-                    <input type="text" className="input" placeholder="Điền tên vị trí" name="name" defaultValue={data?.name || dataDetail?.tenViTri} autoComplete="name" />
-                    <p className='text-error'>{errors?.name}</p>
+                <div className=' grid md:grid-cols-2 gap-4 '>
+                    <div>
+                        <label className="label">Tên phòng</label>
+                        <input type="text" className="input" placeholder="Điền tên phòng" name="name" defaultValue={data?.name || dataDetail?.tenPhong} autoComplete="name" />
+                        <p className='text-error'>{errors?.name}</p>
+                    </div>
+                    <div>
+                        <label className="label">Mô tả</label>
+                        <input type="text" className="input" placeholder="Mô tả" name="description" defaultValue={data?.name || dataDetail?.moTa} autoComplete="description" />
+                        <p className='text-error'>{errors?.description}</p>
+                    </div>
                 </div>
-                <div>
-                    <label className="label">Tỉnh thành</label>
-                    <input type="text" className="input" placeholder="Điền tỉnh thành" name="country" defaultValue={data?.country || dataDetail?.tinhThanh} autoComplete="country" />
-                    <p className='text-error'>{errors?.country}</p>
+                <div className='grid md:grid-cols-2 gap-4'>
+                    <div>
+                        <label className="label">Vị trí</label>
+                        <select className="select select-bordered" name="locationId" defaultValue={data?.location || dataDetail?.maViTri}>
+                            {dataDetail?.locations?.map((item: any) => <option key={item.id} value={item.id}>{item.tenViTri}</option>)}
+                        </select>
+                    </div>
+                    <div>
+                        <label className="label">Số khách</label>
+                        <input type="number" className="input" placeholder="Số khách" name="quantity" defaultValue={data?.quantity || dataDetail?.khach} autoComplete="quantity" />
+                        <p className='text-error'>{errors?.quantity}</p>
+                    </div>
                 </div>
-                <div>
-                    <label className="label">Quốc gia</label>
-                    <input type="text" className="input" placeholder="Điền quốc gia" name="nation" defaultValue={data?.nation || dataDetail?.quocGia} autoComplete="nation" />
-                    <p className='text-error'>{errors?.nation}</p>
+                <div className='grid md:grid-cols-2 gap-4'>
+                    <div>
+                        <label className="label">Số phòng ngủ</label>
+                        <input type="number" className="input" placeholder="Số phòng ngủ" name="roomNumber" defaultValue={data?.roomNumber || dataDetail?.phongNgu} autoComplete="roomNumber" />
+                        <p className='text-error'>{errors?.roomNumber}</p>
+                    </div>
+                    <div>
+                        <label className="label">Số giường</label>
+                        <input type="number" className="input" placeholder="Số giường" name="bedNumber" defaultValue={data?.bedNumber || dataDetail?.giuong} autoComplete="bedNumber" />
+                        <p className='text-error'>{errors?.bedNumber}</p>
+                    </div>
+                </div>
+                <div className='grid md:grid-cols-2 gap-4'>
+                    <div>
+                        <label className="label">Số phòng tắm</label>
+                        <input type="number" className="input" placeholder="Số phòng ngủ" name="bathNumber" defaultValue={data?.bathNumber || dataDetail?.phongTam} autoComplete="bathNumber" />
+                        <p className='text-error'>{errors?.bathNumber}</p>
+                    </div>
+                    <div>
+                        <label className="label">Giá phòng</label>
+                        <input type="number" className="input" placeholder="Đơn vị $" name="price" defaultValue={data?.price || dataDetail?.giaTien} autoComplete="price" />
+                        <p className='text-error'>{errors?.price}</p>
+                    </div>
+                </div>
+                <div className='grid md:grid-cols-3 gap-4'>
+                    <div>
+                        <label className="label block mb-2">Máy giặt</label>
+                        <ToggleCheckbox name="wash" isChecked={data?.wash || dataDetail?.mayGiat} />
+                    </div>
+                    <div>
+                        <label className="label block mb-2">Bàn là</label>
+                        <ToggleCheckbox name="iron" isChecked={data?.iron || dataDetail?.banLa} />
+                    </div>
+                    <div>
+                        <label className="label block mb-2">Ti vi</label>
+                        <ToggleCheckbox name="tv" isChecked={data?.tv || dataDetail?.tiVi} />
+                    </div>
+                </div>
+                <div className='grid md:grid-cols-3 gap-4'>
+                    <div>
+                        <label className="label block mb-2">Điều hòa</label>
+                        <ToggleCheckbox name="air" isChecked={data?.air || dataDetail?.dieuHoa} />
+                    </div>
+                    <div>
+                        <label className="label block mb-2">Wifi</label>
+                        <ToggleCheckbox name="wifi" isChecked={data?.wifi || dataDetail?.wifi} />
+                    </div>
+                    <div>
+                        <label className="label block mb-2">Bếp</label>
+                        <ToggleCheckbox name="cook" isChecked={data?.cook || dataDetail?.bep} />
+                    </div>
+                </div>
+                <div className='grid md:grid-cols-3 gap-4'>
+                    <div>
+                        <label className="label block mb-2">Đổ xe</label>
+                        <ToggleCheckbox name="park" isChecked={data?.park || dataDetail?.doXe} />
+                    </div>
+                    <div>
+                        <label className="label block mb-2">Hồ bơi</label>
+                        <ToggleCheckbox name="pool" isChecked={data?.pool || dataDetail?.hoBoi} />
+                    </div>
                 </div>
                 <div className='flex gap-2 justify-end items-center mt-2'>
                     <button className="btn btn-primary" disabled={isPending}>

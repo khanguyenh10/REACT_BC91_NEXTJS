@@ -1,7 +1,7 @@
 
 
 export interface RoomVM {
-    "id": number;
+    "id"?: number;
     "tenPhong": string;
     "khach": number;
     "phongNgu": number;
@@ -17,7 +17,6 @@ export interface RoomVM {
     "bep": boolean;
     "doXe": boolean;
     "hoBoi": boolean;
-    "banUi": boolean;
     "maViTri": number;
-    "hinhAnh": string;
+    "hinhAnh"?: string;
 }

@@ -31,6 +31,7 @@ const LocationForm = (props: Props) => {
     const checkFormAction = (payload: FormData) => {
         if (!photoThumb) {
             setErrorThumb('Vui lòng úp hình ảnh');
+            return;
         } else {
             setErrorThumb('');
         }

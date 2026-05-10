@@ -30,7 +30,6 @@ const Conveniences = (props: Props) => {
                 {renderConvenience(room.bep, "Bếp")}
                 {renderConvenience(room.doXe, "Đỗ xe")}
                 {renderConvenience(room.hoBoi, "Hồ bơi")}
-                {renderConvenience(room.banUi, "Bàn ủi")}
             </div>
         </ div>
     )

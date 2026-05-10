@@ -38,7 +38,7 @@ export const getSearchPaginRooms = async (pageIndex: number, pageSize: number, k
 export const postRoomThumb = async (file: File, roomId: number): Promise<ResponseData<RoomVM> | null> => {
     const formData = new FormData();
     formData.append('formFile', file);
-    return await fetcher(`/phong-thue/upload-hinh-vitri?maViTri=${roomId}`, {
+    return await fetcher(`/phong-thue/upload-hinh-phong?maPhong=${roomId}`, {
         method: 'POST',
         body: formData,
     });

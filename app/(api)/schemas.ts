@@ -45,3 +45,46 @@ export const LocationSchema = z.object({
     country: z.string().trim().min(3, 'Tên tỉnh thành phải ≥ 3 ký tự'),
 })
 
+export const RoomSchema = z.object({
+    name: z.string().trim().min(3, 'Tên phòng phải ≥ 3 ký tự'),
+    quantity: z
+        .coerce
+        .number()
+        .min(1, "Số khách phải lớn hơn 0")
+        .max(3, "Số khách tối đa 3 người"),
+    roomNumber: z
+      .coerce
+      .number()
+      .min(1, "Số phòng ngủ phải lớn hơn 0")
+      .max(3, "Số phòng ngủ tối đa 3 người"),
+    bedNumber: z
+        .coerce
+        .number()
+        .min(1, "Số phòng ngủ phải lớn hơn 0")
+        .max(3, "Số phòng ngủ tối đa 3 người"),
+    bathNumber: z
+       .coerce
+        .number()
+        .min(1, "Số phòng tắm phải lớn hơn 0")
+        .max(3, "Số phòng tắm tối đa 3 người"),
+    description: z
+        .string().trim()
+        .min(3, "Mô tả tối thiểu 3 ký tự"),
+    price: z
+       .coerce
+        .number()
+        .min(1, "Giá tiền không hợp lệ"),
+    wash: z.coerce.boolean(),
+    iron: z.coerce.boolean(),
+    tv:z.coerce.boolean(),
+    air: z.coerce.boolean(),
+    wifi: z.coerce.boolean(),
+    cook: z.coerce.boolean(),
+    park:z.coerce.boolean(),
+    pool: z.coerce.boolean(),
+    locationId: z.coerce
+        .number()
+        .min(1, "Vui lòng chọn vị trí"),
+})
+
+            
