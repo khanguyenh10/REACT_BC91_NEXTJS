@@ -34,7 +34,7 @@ const page = async (props: Props) => {
                 </div>
 
 
-                <div className="absolute  top-1/2 left-[50%]  -translate-x-1/2 -translate-y-1/2  text-white text-2xl  font-medium uppercase" >
+                <div className="absolute  top-1/2 left-[50%]  -translate-x-1/2 -translate-y-1/2  text-white text-2xl  font-medium uppercase wow animate__fadeIn" >
                     Thông tin người dùng
                 </div >
             </section>

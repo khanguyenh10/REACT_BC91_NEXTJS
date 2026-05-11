@@ -11,7 +11,7 @@ type Props = {}
 const page = (props: Props) => {
   return (
     <div>
-      <section className="introduce relative">
+      <section className="introduce relative" >
         {/* HERO IMAGE */}
         <Image
           src="https://picsum.photos/1920/1080?random=1"
@@ -27,11 +27,11 @@ const page = (props: Props) => {
         <BookingSearch />
 
         {/* TEXT */}
-        <div className="absolute bottom-6 left-[50%] translate-x-[-50%]  text-white text-lg md:text-2xl font-medium">
+        <div className="absolute bottom-6 left-[50%] translate-x-[-50%]  text-white text-lg md:text-2xl font-medium wow animate__fadeInLeft">
           Nhờ có Host, mọi điều đều có thể
         </div>
       </section>
-      <section className="discover px-4 md:px-10 py-10">
+      <section className="discover px-4 md:px-10 py-10 wow animate__fadeInUp" data-wow-delay=".3s">
         <div className="container mx-auto">
           <h2 className="text-xl md:text-2xl font-semibold mb-6">
             Khám phá những điểm đến gần đây
@@ -41,7 +41,7 @@ const page = (props: Props) => {
         </div>
 
       </section>
-      <section className="px-6 md:px-12 py-10">
+      <section className="px-6 md:px-12 py-10 wow animate__fadeInUp" data-wow-delay=".5s">
         <div className="container mx-auto ">
           <h2 className="text-[22px] font-semibold mb-6">
             Ở bất cứ đâu
@@ -71,7 +71,7 @@ const page = (props: Props) => {
               },
             ].map((item, i) => (
               <div key={i} className="cursor-pointer">
-                <Link href={item.href} className="overflow-hidden rounded-2xl block hover:text-secondary">
+                <Link href={item.href} className="overflow-hidden rounded-2xl block hover:text-secondary wow animate__fadeInUp" data-wow-delay={`1.${2 * i}s`}>
                   <Image
                     alt={item.title}
                     width={400}

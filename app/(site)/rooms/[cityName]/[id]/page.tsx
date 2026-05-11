@@ -46,13 +46,17 @@ const page = async (props: Props) => {
                 </p>
                 {/* Image Grid */}
                 <div className="grid grid-cols-1 rounded-xl overflow-hidden mt-2">
-                    <Image
-                        alt="Room Image"
-                        width={800}
-                        height={600}
-                        src={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}
-                        className="w-full h-auto object-cover"
-                    />
+                    <Link href={"#"} data-fancybox="gallery" data-caption="room" data-src={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}
+                        data-thumb={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}>
+                        <Image
+                            alt="Room Image"
+                            width={800}
+                            height={600}
+                            src={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}
+                            className="w-full h-auto object-cover"
+                        />
+                    </Link>
+
 
                 </div>
 

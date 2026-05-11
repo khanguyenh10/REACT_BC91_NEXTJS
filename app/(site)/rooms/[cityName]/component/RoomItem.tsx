@@ -14,7 +14,7 @@ export default async function RoomItem({ room, layout = 'horizontal' }: Props) {
     const resLocation = await getLocation(Number(room.maViTri)) as ResponseData<LocationVM>;
     const location = resLocation?.content as LocationVM;
     return (
-        <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className={`${layout === "vertical" ? "flex-col" : ""} flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 hover:text-secondary hover:scale-105 rounded-xl p-3 transition`}>
+        <Link href={`/rooms/${stringToSlug(location.tinhThanh)}/${room.id}`} className={`${layout === "vertical" ? "flex-col" : ""} flex gap-4 cursor-pointer mb-5 hover:bg-gray-100 hover:text-secondary hover:scale-105 rounded-xl p-3 transition wow animate__zoomIn`}>
             <img
                 alt={room.tenPhong}
                 width={125}

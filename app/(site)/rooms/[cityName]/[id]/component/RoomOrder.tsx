@@ -126,10 +126,10 @@ const RoomOrder = (props: Props) => {
                             </div>
 
 
-                            <input type="hidden" name="roomId" value={room.id} />
-                            <input type="hidden" name="isRoomOrdered" value={isRoomOrdered.toString()} />
-                            <input type="hidden" name="pathname" value={pathname} />
-                            <input type="hidden" name="userId" value={user?.id} />
+                            <input type="hidden" name="roomId" defaultValue={room.id} />
+                            <input type="hidden" name="isRoomOrdered" defaultValue={isRoomOrdered.toString()} />
+                            <input type="hidden" name="pathname" defaultValue={pathname} />
+                            <input type="hidden" name="userId" defaultValue={user?.id} />
                         </div>
 
                         {/* Guest */}

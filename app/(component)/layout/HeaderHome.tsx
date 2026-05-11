@@ -18,7 +18,7 @@ const HeaderHome = ({ isLoggedin }: Props) => {
     const { pathname } = useRouting();
     const { dispatch, useAppSelector } = useRedux();
     const { user } = useAppSelector((state: RootState) => state.userReducer);
-    let textHeadderColor = "text-white";
+    let textHeadderColor = "text-white bg-black/80";
     let borderMenuColor = "border-white";
     if (pathname.startsWith("/rooms/") || pathname.startsWith("/profile")) {
         textHeadderColor = "text-black bg-white";
@@ -33,6 +33,13 @@ const HeaderHome = ({ isLoggedin }: Props) => {
         }
 
     }, [isLoggedin])
+
+    // sử dụng animated
+    useEffect(() => {
+        new window.WOW({
+            animateClass: 'animate__animated'
+        }).init();
+    }, [])
 
 
     const renderMenu = () => {
@@ -84,7 +91,7 @@ const HeaderHome = ({ isLoggedin }: Props) => {
         }
     }
     return (
-        <header className={`absolute top-0 left-0 w-full z-50 px-4 md:px-10 py-4 flex justify-between items-center ${textHeadderColor}`}>
+        <header className={`fixed   top-0 left-0 w-full z-50 px-4 md:px-10 py-4 flex justify-between items-center ${textHeadderColor}`}>
             {/* Logo */}
             <Link href="/" className="text-xl font-bold flex items-center gap-2 ">
                 <PaperAirplaneIcon className="w-8 h-8  text-secondary" />

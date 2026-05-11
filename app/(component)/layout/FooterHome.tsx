@@ -5,7 +5,7 @@ type Props = {}
 
 const FooterHome = (props: Props) => {
     return (
-        <footer className="bg-[#f7f7f7] border-t mt-10">
+        <footer className="bg-[#f7f7f7] border-t mt-10  wow animate__fadeInUp" data-wow-delay=".3s" >
             <div className='container'>
                 {/* TOP */}
                 <div className=" py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">

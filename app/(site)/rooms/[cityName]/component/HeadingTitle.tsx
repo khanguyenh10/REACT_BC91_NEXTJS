@@ -12,7 +12,7 @@ const HeadingTitle = (props: Props) => {
     const { locationAt } = useAppSelector((state: RootState) => state.userReducer);
     return (
         <>
-            <div className="absolute bottom-6 left-[50%] translate-x-[-50%]  text-white text-lg md:text-2xl font-medium z-10" >
+            <div className="absolute bottom-6 left-[50%] translate-x-[-50%]  text-white text-lg md:text-2xl font-medium z-10 wow animate__fadeInLeft" >
                 {locationAt.tinhThanh && `Những trải nghiệm tuyệt vời đang chờ bạn ở  `}
                 <span className="text-secondary">{locationAt.tinhThanh}</span>
             </div >

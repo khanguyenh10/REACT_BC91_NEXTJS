@@ -55,6 +55,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 input:hover, select:hover,
@@ -88,4 +89,35 @@ input[type="number"] {
 
 .menu {
     --menu-active-bg: var(--color-secondary);
+}
+
+
+/* BACK TO TOP */
+.backToTop {
+    width: 35px;
+    height: 35px;
+    background: var(--color-secondary);
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    display: block;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    color: white;
+    transition: all .2s;
+    box-shadow: -4px 4px 24px -10px #f55f8d;
+    visibility: hidden;
+    opacity: 0;
+
+}
+
+.cd-top--is-visible {
+    visibility: visible;
+    opacity: 1;
+
+}
+
+.wow {
+    animation-duration: 1.2s !important;
 }

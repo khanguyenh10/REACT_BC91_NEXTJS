@@ -15,7 +15,7 @@ const BookingSearch = async (props: Props) => {
     return (
         <>
             {/* SEARCH BAR */}
-            <div className="absolute top-[80px] md:top-[100px] left-1/2 -translate-x-1/2 w-full px-4 md:px-0 md:w-auto z-10">
+            <div className="absolute top-[80px] md:top-[100px] left-1/2 -translate-x-1/2 w-full px-4 md:px-0 md:w-auto z-10 wow animate__fadeInRight">
 
                 <div className="bg-white rounded-full shadow-xl flex flex-col md:flex-row items-center">
 
