@@ -21,7 +21,7 @@ export default function LocationDropdown({ locations, selected, setSelected }: L
         if (params?.cityName) {
             const selectedLocation = locations.find(loc => stringToSlug(loc.tinhThanh) === params.cityName);
             if (selectedLocation) {
-                dispatch(setLocationAt({ id: selectedLocation.id, tinhThanh: selectedLocation.tinhThanh }));
+                dispatch(setLocationAt({ id: selectedLocation.id as number, tinhThanh: selectedLocation.tinhThanh }));
                 setSelected(selectedLocation.tinhThanh);
             }
         }
@@ -51,7 +51,7 @@ export default function LocationDropdown({ locations, selected, setSelected }: L
                             className="flex items-center gap-2"
                         >
                             <Image
-                                src={loc.hinhAnh}
+                                src={loc.hinhAnh?.includes("http") ? loc.hinhAnh : `https://placehold.co/300x200`}
                                 alt={loc.tinhThanh}
                                 width={125}
                                 height={125}

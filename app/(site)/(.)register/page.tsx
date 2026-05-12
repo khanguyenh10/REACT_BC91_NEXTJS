@@ -1,3 +1,4 @@
+"use client";
 import { registerAction } from '@/(api)/actions/registerAction';
 import LoadingSpinner from '@/(component)/shared/UI/LoadingSpinner';
 import PasswordInput from '@/(component)/shared/UI/PasswordInput';
