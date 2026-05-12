@@ -46,8 +46,8 @@ export default function RootLayout({
       </body>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></Script>
       <Script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></Script>
-      <Script src="/libs/backToTop/util.js" />
-      <Script src="/libs/backToTop/main.js" />
+      <Script src="/libs/backtoTop/util.js" />
+      <Script src="/libs/backtoTop/main.js" />
     </html>
   );
 }

@@ -134,3 +134,7 @@ B2 Phân tích yêu cầu để tạo các page
 B3 Làm UI từng page
 B4 Call Api  
 B5 Chạy và kiểm tra
+
+## Link deploy
+https://airbnb-kha.vercel.app/
+
