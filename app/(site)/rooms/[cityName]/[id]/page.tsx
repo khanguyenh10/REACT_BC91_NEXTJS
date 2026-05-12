@@ -86,8 +86,8 @@ const page = async (props: Props) => {
                         data-thumb={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}>
                         <Image
                             alt="Room Image"
-                            width={800}
-                            height={600}
+                            width={400}
+                            height={300}
                             src={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}
                             className="w-full min-h-48 h-auto object-cover"
                         />

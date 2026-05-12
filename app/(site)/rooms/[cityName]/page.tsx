@@ -36,13 +36,13 @@ const page = (props: Props) => {
             </section>
             <section className='room-listing'>
                 <div className="container ">
-                    <div className="flex flex-1 items-start pt-20">
+                    <div className="flex flex-1 items-start pt-20 flex-wrap">
 
-                        <div className="w-1/2 overflow-y-auto ">
+                        <div className="w-full md:w-1/2 overflow-y-auto  ">
                             <RoomListing params={props.params} />
                         </div>
 
-                        <div className="w-1/2 sticky top-[0] h-[calc(100vh-112px)] " >
+                        <div className="w-full md:w-1/2 sticky top-[0] h-[calc(100vh-112px)] " >
                             <Map />
                         </div>
                     </div>
