@@ -21,7 +21,7 @@ const method = options?.method?.toUpperCase() || 'GET';
         ...(method === 'GET'
         ? {
             cache: 'force-cache',
-            next: { revalidate: 60 },
+            next: { revalidate: 60 },// 1 phut
         }
         : {
             cache: 'no-store',

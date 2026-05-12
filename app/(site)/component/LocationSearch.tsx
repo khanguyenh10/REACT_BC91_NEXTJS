@@ -30,11 +30,11 @@ const LocationSearch = async (props: Props) => {
     });
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 ">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-6 ">
             {locations.map((item, i) => (
                 <Link href={`/rooms/${stringToSlug(item.tinhThanh)}`}
                     key={i}
-                    className="flex items-center gap-4 cursor-pointer hover:bg-gray-100 hover:text-secondary p-2 rounded-xl transition wow animate__zoomIn" data-wow-delay={`1.${i}s`}
+                    className="flex flex-col md:flex-row items-center gap-4 cursor-pointer hover:bg-gray-100 hover:text-secondary p-2 rounded-xl transition wow animate__zoomIn" data-wow-delay={`1.${i}s`}
                 >
                     <Image
                         alt={item.tinhThanh}

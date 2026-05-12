@@ -4,7 +4,34 @@ import Image from 'next/image';
 import React from 'react'
 import LocationSearch from './component/LocationSearch';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Trang chủ - Khám phá nơi ở tuyệt vời',
+  description: 'Khám phá và đặt phòng ở bất cứ đâu với dịch vụ của chúng tôi. Nhờ có Host, mọi điều đều có thể.',
+  openGraph: {
+    title: 'Trang chủ - Khám phá nơi ở tuyệt vời',
+    description: 'Khám phá và đặt phòng ở bất cứ đâu với dịch vụ của chúng tôi.',
+    url: 'https://airbnb-kha.vercel.app',
+    siteName: 'Booking App',
+    images: [
+      {
+        url: 'https://airbnb-kha.vercel.app/thumbnail.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Khám phá nơi ở tuyệt vời',
+      },
+    ],
+    locale: 'vi_VN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Trang chủ - Khám phá nơi ở tuyệt vời',
+    description: 'Khám phá và đặt phòng ở bất cứ đâu với dịch vụ của chúng tôi.',
+    images: ['https://airbnb-kha.vercel.app/thumbnail.jpg'],
+  },
+};
 
 type Props = {}
 

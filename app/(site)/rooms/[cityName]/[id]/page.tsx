@@ -9,15 +9,51 @@ import { LocationVM } from '@/(viewModel)/LocationVM'
 import Conveniences from './component/Conveniences'
 import Comments from './component/Comments'
 import { getCommentsByRoomId } from '@/(api)/comment'
-import { CommentVM } from '@/(viewModel)/CommentVM'
 import RoomOrder from './component/RoomOrder'
 import { getRoomOrders } from '@/(api)/roomOrder'
 import { RoomOrderVM } from '@/(viewModel)/RoomOrderVM'
 import { CommentVMByRoomID } from '@/(viewModel)/CommentVMByRoomID'
 import { getRoom } from '@/(api)/room'
+import { Metadata } from 'next';
+
 type Props = {
     params: Promise<{ id: string; cityName: string }> | { id: string; cityName: string }
 }
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+    const { id, cityName } = await props.params;
+    const resRoomDetail = await getRoom(Number(id)) as ResponseData<RoomVM>;
+    const roomDetail = resRoomDetail?.content as RoomVM;
+
+    return {
+        title: `${roomDetail.tenPhong} - Khám phá nơi ở tuyệt vời`,
+        description: roomDetail.moTa || 'Xem chi tiết phòng và đặt phòng dễ dàng.',
+        openGraph: {
+            title: roomDetail.tenPhong,
+            description: roomDetail.moTa || 'Xem chi tiết phòng và đặt phòng dễ dàng.',
+            url: `https://airbnb-kha.vercel.app/rooms/${cityName}/${id}`,
+            siteName: 'Booking App',
+            images: [
+                {
+                    url: roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : 'https://airbnb-kha.vercel.app/thumbnail.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: roomDetail.tenPhong,
+                },
+            ],
+            locale: 'vi_VN',
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: roomDetail.tenPhong,
+            description: roomDetail.moTa || 'Xem chi tiết phòng và đặt phòng dễ dàng.',
+            images: [roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : 'https://airbnb-kha.vercel.app/thumbnail.jpg'],
+        },
+    };
+}
+
+
 
 const page = async (props: Props) => {
     const { id, cityName } = await props.params;
@@ -53,7 +89,7 @@ const page = async (props: Props) => {
                             width={800}
                             height={600}
                             src={roomDetail.hinhAnh?.includes("http") ? roomDetail.hinhAnh : `https://placehold.co/300x200`}
-                            className="w-full h-auto object-cover"
+                            className="w-full min-h-48 h-auto object-cover"
                         />
                     </Link>
 

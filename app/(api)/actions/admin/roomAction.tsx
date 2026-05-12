@@ -46,10 +46,12 @@ export const roomAction = async (prevState: FormState, formData: FormData): Prom
         if (action == 'ADD') {
             let response = await postRoom(postData);
             let { id } = response?.content as RoomVM;
-            let responseThumb = await postRoomThumb(data.thumb as File, id as number);
+            if ((data.thumb instanceof File && data.thumb.type.includes('image'))) {
+                let responseThumb = await postRoomThumb(data.thumb as File, id as number);
+            }
         } else {
             let id = data.id as string;
-            if ((data.thumb instanceof File && data.thumb.size > 0)) {
+            if ((data.thumb instanceof File && data.thumb.type.includes('image'))) {
                 let responseThumb = await postRoomThumb(data.thumb as File, parseInt(id));
             }
             let response = await putRoom(parseInt(id), postData);

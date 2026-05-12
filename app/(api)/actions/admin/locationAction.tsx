@@ -30,10 +30,12 @@ export const locationAction = async (prevState: FormState, formData: FormData): 
         if (action == 'ADD') {
             let response = await postLocation(postData);
             let { id } = response?.content as LocationVM;
-            let responseThumb = await postLocationThumb(data.thumb as File, id as number);
+            if ((data.thumb instanceof File && data.thumb.type.includes('image'))) {
+                let responseThumb = await postLocationThumb(data.thumb as File, id as number);
+            }
         } else {
             let id = data.id as string;
-            if ((data.thumb instanceof File && data.thumb.size > 0)) {
+            if ((data.thumb instanceof File && data.thumb.type.includes('image'))) {
                 let responseThumb = await postLocationThumb(data.thumb as File, parseInt(id));
             }
             let response = await putLocation(parseInt(id), postData);

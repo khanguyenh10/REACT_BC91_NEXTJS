@@ -27,7 +27,7 @@ const page = async (props: Props) => {
     return (
         <div className="p-4 md:p-6 bg-base-200 min-h-screen">
             <SearchInput query={query} />
-            <div className="hidden md:block overflow-x-auto bg-base-100 rounded-xl shadow">
+            <div className="overflow-x-auto bg-base-100 rounded-xl shadow">
                 <table className="table">
                     <thead>
                         <tr>
