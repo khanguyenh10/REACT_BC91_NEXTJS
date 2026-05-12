@@ -28,3 +28,12 @@ export const toBoolean = (val: any) => {
     if (val === 'false') return false;
     return Boolean(val);
 };
+
+
+export function disableConsole() {
+    console.log = () => { };
+    console.warn = () => { };
+    console.error = () => { };
+    console.info = () => { };
+    console.debug = () => { };
+}

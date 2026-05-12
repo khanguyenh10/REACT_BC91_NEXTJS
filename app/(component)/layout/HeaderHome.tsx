@@ -6,6 +6,7 @@ import { openModal } from '@/(redux)/reducer/modalReducer';
 import { setIsLoggined, setUser } from '@/(redux)/reducer/userReducer';
 import { RootState } from '@/(redux)/store';
 import { getLocalStorage, USER } from '@/utils/config';
+import { disableConsole } from '@/utils/text';
 import { ArrowDownCircleIcon, PaperAirplaneIcon, UserIcon } from '@heroicons/react/16/solid'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
@@ -40,6 +41,8 @@ const HeaderHome = ({ isLoggedin }: Props) => {
             animateClass: 'animate__animated'
         }).init();
     }, [])
+
+
 
 
     const renderMenu = () => {
@@ -100,9 +103,15 @@ const HeaderHome = ({ isLoggedin }: Props) => {
 
             {/* Menu */}
             <div className="hidden md:flex gap-6 text-sm font-medium">
-                <span className={`border-b-2 ${borderMenuColor} pb-1`}>Nơi ở</span>
-                <span className={` pb-1`}>Trải nghiệm</span>
-                <span className={`  pb-1`}>Trải nghiệm trực tuyến</span>
+                <Link href="/" className={` ${pathname === "/" ? `${borderMenuColor} border-b-2` : ''} pb-1`}>
+                    Nơi ở
+                </Link>
+                <Link href="/rooms" className={` ${pathname === "/rooms" || pathname.startsWith("/rooms/") ? `${borderMenuColor} border-b-2` : ''} pb-1`}>
+                    Trải nghiệm
+                </Link>
+                <Link href="/about" className={` ${pathname === "/about" ? `${borderMenuColor} border-b-2` : ''} pb-1`}>
+                    Chúng tôi
+                </Link>
             </div>
 
             {/* Right */}
