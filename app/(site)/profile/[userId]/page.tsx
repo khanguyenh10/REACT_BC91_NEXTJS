@@ -5,6 +5,9 @@ import UpdateInfo from './components/UpdateInfo';
 import { ResponseData } from '@/(viewModel)/ResponseData';
 import { UserVM } from '@/(viewModel)/UserVM';
 import { getUser } from '@/(api)/user';
+import { getCookie } from '@/utils/cookieServer';
+import { ACCESSTOKEN } from '@/utils/config';
+import { redirect } from 'next/navigation';
 
 type Props = {
     params: Promise<{
@@ -15,6 +18,9 @@ type Props = {
 }
 
 const page = async (props: Props) => {
+    const token = await getCookie(ACCESSTOKEN);
+    const isLoggined = !!token;
+    if (!isLoggined) return redirect('/');
     const { userId } = await props.params;
     const resUserDetail = await getUser(Number(userId)) as ResponseData<UserVM>;
     const userDetail = resUserDetail?.content as UserVM;

@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
         pathname:"**"
       },
       {
-        protocol:"https",
+        protocol:"http",
         hostname:"sc04.alicdn.com",
         port:"",
         pathname:"**"

@@ -17,6 +17,8 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import LoadingSpinner from '@/(component)/shared/UI/LoadingSpinner';
 import { CommentVMByRoomID } from '@/(viewModel)/CommentVMByRoomID';
 import CustomSelect from '@/(component)/shared/UI/CustomSelect';
+import { redirect } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 
 
@@ -83,6 +85,14 @@ const RoomOrder = (props: Props) => {
     }
 
     console.log("numberOfGuests", numberOfGuests);
+
+    function checkLoginFirst(formData: FormData) {
+        if (!user.id) {
+            toastError({ message: 'Vui lòng đăng nhập trước' });
+        } else {
+            formAction(formData);
+        }
+    }
     return (
         <div className="lg:col-span-1">
             <div className="card bg-base-100 shadow-xl sticky top-6">
@@ -97,7 +107,7 @@ const RoomOrder = (props: Props) => {
                         </div>
                     </div>
 
-                    <form action={formAction} >
+                    <form action={checkLoginFirst} >
                         {/* Date */}
                         <div className="grid grid-cols-2 gap-2">
                             <div>

@@ -37,9 +37,14 @@ const HeaderHome = ({ isLoggedin }: Props) => {
 
     // sử dụng animated
     useEffect(() => {
-        new window.WOW({
-            animateClass: 'animate__animated'
-        }).init();
+        try {
+            new window.WOW({
+                animateClass: 'animate__animated'
+            }).init();
+        } catch (error) {
+
+        }
+
     }, [])
 
 
