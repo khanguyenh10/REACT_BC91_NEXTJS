@@ -26,6 +26,7 @@ export const loginAction = async (prevState: FormState, formData: FormData): Pro
             data: user
         }
     } catch (error) {
+        console.log(error)
         return prevState = {
             status: "error",
             message: 'Email và mật khẩu không đúng',

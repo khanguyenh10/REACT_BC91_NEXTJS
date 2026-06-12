@@ -36,7 +36,7 @@ const page = (props: Props) => {
                 <div className="flex flex-col items-center gap-2 my-3">
                     <div className="avatar">
                         <div className="w-24 rounded-full " >
-                            <Image src={photoThumb as string} width={100} height={100} alt="avatar" />
+                            <img src={photoThumb as string} width={100} height={100} alt="avatar" />
                         </div>
                     </div>
                 </div>
