@@ -20,11 +20,13 @@ const HeaderAdmin = ({ isLoggedin }: Props) => {
     useEffect(() => {
         // setIsLoggedin
         dispatch(setIsLoggined(isLoggedin));
-        if (!isLoggedin || user.role !== "ADMIN") {
+        if (!isLoggedin) {
             redirect('/');
         } else {
-            // update data từ localStorage vào storage
-            if (getLocalStorage(USER)) {
+            let user = getLocalStorage(USER)
+            if (user.role !== "ADMIN") {
+                redirect('/');
+            } else {
                 dispatch(setUser(getLocalStorage(USER)));
             }
         }

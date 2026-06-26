@@ -26,6 +26,9 @@ const page = async (props: Props) => {
     let totalRow = dataRoomOrderFilter.length;
     return (
         <div className="p-4 md:p-6 bg-base-200 min-h-screen">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                <h1 className="text-xl md:text-2xl font-bold">Quản lý đặt phòng</h1>
+            </div>
             <SearchInput query={query} />
             <div className="overflow-x-auto bg-base-100 rounded-xl shadow">
                 <table className="table">
