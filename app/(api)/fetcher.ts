@@ -8,6 +8,7 @@ export async function fetcher(url: string, options?: RequestInit) {
   const method = options?.method?.toUpperCase() || 'GET';
   const token = await getCookie(ACCESSTOKEN);
   const fetchUrl = DOMAIN + url;
+  console.log(fetchUrl)
   const isFormData = options?.body instanceof FormData;
   try {
     const res = await fetch(fetchUrl, {

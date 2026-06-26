@@ -34,7 +34,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
       </head>
 
-      <body className=" bg-white antialiased">
+      <body className=" bg-white antialiased " cz-shortcut-listen="true">
         <LoadRedux>
           <>
             {children}
