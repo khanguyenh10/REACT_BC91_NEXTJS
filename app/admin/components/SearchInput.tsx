@@ -4,10 +4,11 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 
 type Props = {
-    query: string
+    query: string,
+    placeholder: string
 }
 
-const SearchInput = ({ query }: Props) => {
+const SearchInput = ({ query, placeholder }: Props) => {
     const [keyword, setKeyword] = React.useState<string>(query);
     const { navigate, searchParams } = useRouting();
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +29,7 @@ const SearchInput = ({ query }: Props) => {
             <div className="join w-120 max-w-full my-5">
                 <input
                     type="text"
-                    placeholder="Nhập từ khóa tìm kiếm..."
+                    placeholder={`Nhập từ khóa theo ${placeholder}`}
                     className="input input-bordered w-full join-item"
                     value={keyword}
                     onChange={handleChange}

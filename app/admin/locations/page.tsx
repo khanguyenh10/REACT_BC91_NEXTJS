@@ -19,7 +19,7 @@ const page = async (props: Props) => {
     return (
         <div className="p-4 md:p-6 bg-base-200 min-h-screen">
             <HeaderTitle name="Vị trí" />
-            <SearchInput query={query} />
+            <SearchInput query={query} placeholder='Vị trí' />
             <div className=" overflow-x-auto bg-base-100 rounded-xl shadow">
                 <table className="table">
                     <thead>

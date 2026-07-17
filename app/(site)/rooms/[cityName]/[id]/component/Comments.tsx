@@ -19,7 +19,7 @@ const Comments = async (props: Props) => {
         <div className="mt-10" id="comments">
             <h3 className="text-xl font-semibold mb-4">Đánh giá</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[200px] overflow-y-auto pr-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[200px] overflow-y-auto" style={{ wordBreak: 'break-word' }}>
                 {comments.reverse().map((comment, i) => (
                     <div key={i} className="flex gap-3 items-start">
                         <div className="avatar">

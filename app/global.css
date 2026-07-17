@@ -121,3 +121,9 @@ input[type="number"] {
 .wow {
     animation-duration: 1.2s !important;
 }
+
+[readonly] {
+    cursor: not-allowed;
+    border-color: var(--color-base-200) lab(94.2386% -4.73434 -9.80623);
+    background-color: var(--color-base-200);
+}

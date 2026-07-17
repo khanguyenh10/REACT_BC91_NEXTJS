@@ -40,7 +40,7 @@ const page = (props: Props) => {
                 </div>
                 <div>
                     <label className="label">Email</label>
-                    <input type="email" className="input" placeholder="Điền email" name="email" defaultValue={data?.email || user.email} autoComplete="email" />
+                    <input type="email" readOnly className="input" placeholder="Điền email" name="email" defaultValue={data?.email || user.email} autoComplete="email" />
                     <p className='text-error'>{errors?.email}</p>
                 </div>
                 <div>

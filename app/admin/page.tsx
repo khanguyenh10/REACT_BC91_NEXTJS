@@ -9,6 +9,7 @@ import { SearchPaginVM } from '@/(viewModel)/SearchPaginVM';
 import { UserVM } from '@/(viewModel)/UserVM';
 import dayjs from 'dayjs';
 import Pagination from './components/Pagination';
+import ItemUserTr from './ItemUserTr';
 
 type Props = {
     searchParams: Promise<{ query: string, page: string }> | { query: string, page: string }
@@ -21,7 +22,7 @@ const page = async (props: Props) => {
     return (
         <div className="p-4 md:p-6 bg-base-200 min-h-screen">
             <HeaderTitle name="Người dùng" />
-            <SearchInput query={query} />
+            <SearchInput query={query} placeholder='tên' />
             <div className="overflow-x-auto bg-base-100 rounded-xl shadow">
                 <table className="table">
                     <thead>
@@ -38,36 +39,7 @@ const page = async (props: Props) => {
                     </thead>
                     <tbody>
                         {users.map((user) => (
-                            <tr key={user.id}>
-                                <td>{user.id}</td>
-                                <td className="font-semibold">{user.name}</td>
-                                <td>{dayjs(user.birthday).format("DD/MM/YYYY")}</td>
-                                <td className="">{user.phone}</td>
-                                <td className="text-blue-600">{user.email}</td>
-                                <td>
-                                    <span
-                                        className={`font-bold badge ${user.gender.toString() === "true"
-                                            ? "badge-primary"
-                                            : "badge-secondary"
-                                            }`}
-                                    >
-                                        {user.gender ? "Nam" : "Nữ"}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span
-                                        className={`font-bold ${user.role === "ADMIN"
-                                            ? "text-red-500"
-                                            : "text-green-600"
-                                            }`}
-                                    >
-                                        {user.role}
-                                    </span>
-                                </td>
-                                <td className="flex gap-2">
-                                    <ActionItem data={user} />
-                                </td>
-                            </tr>
+                            <ItemUserTr key={user.id} user={user} />
                         ))}
                     </tbody>
                 </table>

@@ -29,7 +29,7 @@ const page = async (props: Props) => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
                 <h1 className="text-xl md:text-2xl font-bold">Quản lý đặt phòng</h1>
             </div>
-            <SearchInput query={query} />
+            <SearchInput query={query} placeholder='Mã người dùng' />
             <div className="overflow-x-auto bg-base-100 rounded-xl shadow">
                 <table className="table">
                     <thead>
