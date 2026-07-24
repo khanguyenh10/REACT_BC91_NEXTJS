@@ -5,11 +5,12 @@ import { removeRoomOrderAction } from '@/(api)/actions/admin/roomOrderAction';
 import { removeUserAction } from '@/(api)/actions/admin/userAction';
 import useRedux from '@/(hook)/useRedux';
 import useRouting from '@/(hook)/useRouting';
-import { DrawserState, openDrawer } from '@/(redux)/reducer/drawerReducer';
+import { closeDrawser, DrawserState, openDrawer } from '@/(redux)/reducer/drawerReducer';
 import { toastConfirmDelete, toastError, toastSuccess } from '@/utils/toast';
 import { PencilIcon, TrashIcon } from '@heroicons/react/16/solid'
 import React from 'react'
-
+import { RootState } from '@/(redux)/store';
+import { getUser } from '@/(api)/user';
 type Props = {
     data: any
     isEdit?: boolean
@@ -17,7 +18,7 @@ type Props = {
 
 const ItemAction = ({ data, isEdit = true }: Props) => {
     const { pathname } = useRouting();
-    const { dispatch } = useRedux();
+    const { dispatch, useAppSelector } = useRedux();
     let state: DrawserState = { action: null, type: null, dataDetail: data };
     if (pathname.startsWith("/admin/rooms")) {
         state.type = "ROOMS";
@@ -28,9 +29,19 @@ const ItemAction = ({ data, isEdit = true }: Props) => {
     } else {
         state.type = "USERS";
     }
-    const handleEdit = () => {
+    const handleEdit = async () => {
         state.action = "EDIT";
-        dispatch(openDrawer(state));
+        if (state.type == "ROOM_ORDERS") {
+            console.log(data)
+            try {
+                state.dataDetail = (await getUser(data.maNguoiDung)).content;
+                dispatch(openDrawer(state));
+            } catch (error: any) {
+                toastError("Người dùng không tìm thấy");
+            }
+        } else {
+            dispatch(openDrawer(state));
+        }
     }
     const handleDelete = () => {
         toastConfirmDelete({

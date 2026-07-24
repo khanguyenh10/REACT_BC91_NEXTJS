@@ -11,6 +11,8 @@ import { SearchPaginVM } from '@/(viewModel)/SearchPaginVM';
 import { getRoomOrders, getSearchPaginRoomOrders } from '@/(api)/roomOrder';
 import { RoomOrderVM } from '@/(viewModel)/RoomOrderVM';
 import dayjs from 'dayjs';
+import { getUser } from '@/(api)/user';
+import { UserVM } from '@/(viewModel)/UserVM';
 type Props = {
     searchParams: Promise<{ query: string, page: string }> | { query: string, page: string }
 }
@@ -24,6 +26,8 @@ const page = async (props: Props) => {
     let dataRoomOrderFilter = roomOrders.filter(roomOrder => roomOrder.maNguoiDung.toString().includes(query) || dayjs(roomOrder.ngayDen).format('DD/MM/YYYY').indexOf(query) !== -1);
     let dataRoomOrder = dataRoomOrderFilter.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
     let totalRow = dataRoomOrderFilter.length;
+
+
     return (
         <div className="p-4 md:p-6 bg-base-200 min-h-screen">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
@@ -53,7 +57,7 @@ const page = async (props: Props) => {
                                 <td>{dayjs(roomOrder.ngayDi).format('DD/MM/YYYY')}</td>
                                 <td>{roomOrder.soLuongKhach}</td>
                                 <td className="flex gap-2">
-                                    <ActionItem data={roomOrder} isEdit={false} />
+                                    <ActionItem data={roomOrder} />
                                 </td>
                             </tr>
                         ))}

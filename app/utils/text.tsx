@@ -31,11 +31,11 @@ export const toBoolean = (val: any) => {
 
 
 export function disableConsole() {
-    console.log = () => { };
-    console.warn = () => { };
-    console.error = () => { };
-    console.info = () => { };
-    console.debug = () => { };
+    // console.log = () => { };
+    // console.warn = () => { };
+    // console.error = () => { };
+    // console.info = () => { };
+    // console.debug = () => { };
 }
 export function limitAge(idDate: string) {
     const today = new Date();

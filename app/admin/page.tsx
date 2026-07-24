@@ -45,7 +45,6 @@ const page = async (props: Props) => {
                 </table>
                 <div className=' flex justify-center'>
                     <Pagination pageIndex={pageIndex} pageSize={pageSize} totalRow={totalRow} query={query} />
-
                 </div>
                 <br />
             </div>
