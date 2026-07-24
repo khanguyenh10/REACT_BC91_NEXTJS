@@ -13,7 +13,7 @@ type Props = {
 
 const ItemUserTr = ({ user }: Props) => {
     const { useAppSelector } = useRedux();
-    const { user: userMe } = useAppSelector((state: RootState) => state.userReducer)
+    const { user: userMe } = useAppSelector((state: RootState) => state.userReducer);
     return (
         <tr key={user.id} className={userMe?.id == user.id ? 'hidden' : ''}>
             <td>{user.id}</td>

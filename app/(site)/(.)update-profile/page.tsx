@@ -11,6 +11,7 @@ import React, { useEffect } from 'react'
 import Image from 'next/image';
 import useRouting from '@/(hook)/useRouting';
 import { updateProfileAction } from '@/(api)/actions/updateProfileAction';
+import { limitAge } from '@/utils/text';
 type Props = {}
 
 const page = (props: Props) => {
@@ -26,7 +27,11 @@ const page = (props: Props) => {
             dispatch(setUser(data));
             dispatch(closeModal());
         }
-    }, [isSuccess])
+    }, [isSuccess]);
+
+    useEffect(() => {
+        limitAge('birthday');
+    }, [])
 
     return (
         <form action={formAction}>
@@ -50,7 +55,7 @@ const page = (props: Props) => {
                 </div>
                 <div>
                     <label className="label">Ngày sinh</label>
-                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday || user.birthday} />
+                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday || user.birthday} id="birthday" />
                     <p className='text-error'>{errors?.birthday}</p>
                 </div>
                 <div className="form-control">

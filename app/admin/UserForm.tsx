@@ -8,6 +8,7 @@ import { closeDrawser, DrawserState } from '@/(redux)/reducer/drawerReducer';
 import React, { use, useEffect } from 'react'
 import LabelAction from './components/LabelAction';
 import { toastError } from '@/utils/toast';
+import { limitAge } from '@/utils/text';
 
 type Props = {}
 
@@ -23,7 +24,11 @@ const UserForm = (props: Props) => {
         if (status === 'success' && data) {
             dispatch(closeDrawser());
         }
-    }, [status])
+    }, [status]);
+
+    useEffect(() => {
+        limitAge('birthday');
+    }, [])
     return (
         <form action={formAction}>
             <fieldset className="fieldset rounded-box w-xs  p-4">
@@ -57,7 +62,7 @@ const UserForm = (props: Props) => {
                 </div>
                 <div>
                     <label className="label">Ngày sinh</label>
-                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday || dataDetail?.birthday} />
+                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday || dataDetail?.birthday} id='birthday' />
                     <p className='text-error'>{errors?.birthday}</p>
                 </div>
                 <div>

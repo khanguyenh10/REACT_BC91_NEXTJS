@@ -37,3 +37,15 @@ export function disableConsole() {
     console.info = () => { };
     console.debug = () => { };
 }
+export function limitAge(idDate: string) {
+    const today = new Date();
+
+    const maxDate = new Date();
+    maxDate.setFullYear(today.getFullYear() - 18);
+
+    const minDate = new Date();
+    minDate.setFullYear(today.getFullYear() - 100);
+
+    (document.getElementById(idDate) as any).min = minDate.toISOString().split("T")[0];
+    (document.getElementById(idDate) as any).max = maxDate.toISOString().split("T")[0];
+}

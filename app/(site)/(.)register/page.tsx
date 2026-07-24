@@ -5,6 +5,7 @@ import PasswordInput from '@/(component)/shared/UI/PasswordInput';
 import useRedux from '@/(hook)/useRedux';
 import useServerAction from '@/(hook)/useServerAction';
 import { closeModal, openModal } from '@/(redux)/reducer/modalReducer';
+import { limitAge } from '@/utils/text';
 import React, { useEffect } from 'react'
 
 type Props = {}
@@ -17,7 +18,11 @@ const page = (props: Props) => {
         if (status === 'success' && data) {
             dispatch(openModal('LOGIN'));
         }
-    }, [status])
+    }, [status]);
+
+    useEffect(() => {
+        limitAge('birthday');
+    }, [])
     return (
         <form action={formAction}>
             <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-xs border p-4">
@@ -44,7 +49,7 @@ const page = (props: Props) => {
                 </div>
                 <div>
                     <label className="label">Ngày sinh</label>
-                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday} />
+                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday} id='birthday' />
                     <p className='text-error'>{errors?.birthday}</p>
                 </div>
                 <div className="form-control">

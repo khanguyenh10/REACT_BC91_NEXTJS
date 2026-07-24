@@ -23,7 +23,7 @@ const AddComment = ({ room }: Props) => {
                 <UserCircleIcon className="w-10 h-10 inline-block" />
                 <span className="text-lg font-semibold ml-2">{user?.name}</span>
             </div>
-            <div className="rating my-2">
+            <div className="rating my-2 bg-white p-1 rounded">
                 <input type="radio" name="rating" className="mask mask-star-2 bg-orange-400" aria-label="1 star" defaultValue={1} />
                 <input type="radio" name="rating" className="mask mask-star-2 bg-orange-400" aria-label="2 star"
                     defaultValue={2}
@@ -49,7 +49,7 @@ const AddComment = ({ room }: Props) => {
                 defaultValue=""
             />
             {errors?.content && <p className='text-error'>{errors.content}</p>}
-            <button className="btn btn-primary mt-3">Add Comment</button>
+            <button className="btn btn-secondary mt-3">Add Comment</button>
         </form>
     )
 }

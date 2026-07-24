@@ -10,7 +10,7 @@ import { RoomVM } from '@/(viewModel)/RoomVM';
 import { toastError } from '@/utils/toast';
 import { StarIcon } from '@heroicons/react/16/solid';
 import dayjs from 'dayjs';
-import React, { useActionState, useEffect } from 'react'
+import React, { useActionState, useEffect, useState } from 'react'
 
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
@@ -61,21 +61,11 @@ const RoomOrder = (props: Props) => {
 
     const handleFromDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checkoutDate = e.target.value;
-        let isInvalidDate = dayjs(checkoutDate).isBefore(dayjs());
-        // if (isInvalidDate) {
-        //     toastError({ message: 'Ngày nhận phòng phải sau ngày hôm nay' });
-        //     return;
-        // }
         dispatch(setFromDate(checkoutDate));
     }
 
     const handleToDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checkoutDate = e.target.value;
-        let isInvalidDate = dayjs(checkoutDate).isBefore(dayjs(fromDate));
-        if (isInvalidDate) {
-            toastError({ message: 'Ngày trả phòng phải sau ngày nhận phòng' });
-            return;
-        }
         dispatch(setToDate(checkoutDate));
     }
     const handleNumberOfGuests = (value: number) => {
@@ -93,6 +83,14 @@ const RoomOrder = (props: Props) => {
             formAction(formData);
         }
     }
+    useEffect(() => {
+        setTimeout(() => {
+            if (isSuccess) {
+                redirect(`/profile/${user.id}`)
+            }
+        }, 1000);
+
+    }, [isSuccess])
     return (
         <div className="lg:col-span-1">
             <div className="card bg-base-100 shadow-xl sticky top-6">
@@ -132,6 +130,7 @@ const RoomOrder = (props: Props) => {
                                     value={toDate}
                                     onChange={handleToDate}
                                     name="toDate"
+                                    min={fromDate}
                                 />
                             </div>
 

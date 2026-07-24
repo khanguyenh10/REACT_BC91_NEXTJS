@@ -38,7 +38,7 @@ const Comments = async (props: Props) => {
                 ))}
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 p-3 bg-primary text-primary-content rounded">
                 <AddComment room={room} />
             </div>
         </div>
