@@ -43,7 +43,7 @@ const AddComment = ({ room }: Props) => {
             <input type="hidden" name="userId" defaultValue={user?.id} />
             <input type="hidden" name="pathname" defaultValue={pathname} />
             <textarea
-                className="textarea textarea-bordered w-full h-24"
+                className="textarea textarea-bordered w-full h-24 text-black"
                 placeholder="Viết đánh giá của bạn..."
                 name="content"
                 defaultValue=""

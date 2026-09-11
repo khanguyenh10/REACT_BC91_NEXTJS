@@ -33,7 +33,7 @@ export const locationAction = async (prevState: FormState, formData: FormData): 
             if ((data.thumb instanceof File && data.thumb.type.includes('image'))) {
                 let responseThumb = await postLocationThumb(data.thumb as File, id as number);
             }
-        } else {
+        } else if (action == 'EDIT') {
             let id = data.id as string;
             if ((data.thumb instanceof File && data.thumb.type.includes('image'))) {
                 let responseThumb = await postLocationThumb(data.thumb as File, parseInt(id));
