@@ -9,6 +9,7 @@ import React, { use, useEffect } from 'react'
 import LabelAction from './components/LabelAction';
 import { toastError } from '@/utils/toast';
 import { limitAge } from '@/utils/text';
+import dayjs from 'dayjs';
 
 type Props = {}
 
@@ -62,7 +63,7 @@ const UserForm = (props: Props) => {
                 </div>
                 <div>
                     <label className="label">Ngày sinh</label>
-                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday || dataDetail?.birthday} id='birthday' />
+                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={dayjs(data?.birthday || dataDetail.birthday).format("YYYY-MM-DD")} id='birthday' />
                     <p className='text-error'>{errors?.birthday}</p>
                 </div>
                 <div>

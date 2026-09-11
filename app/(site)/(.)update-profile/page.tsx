@@ -12,6 +12,7 @@ import Image from 'next/image';
 import useRouting from '@/(hook)/useRouting';
 import { updateProfileAction } from '@/(api)/actions/updateProfileAction';
 import { limitAge } from '@/utils/text';
+import dayjs from 'dayjs';
 type Props = {}
 
 const page = (props: Props) => {
@@ -32,7 +33,7 @@ const page = (props: Props) => {
     useEffect(() => {
         limitAge('birthday');
     }, [])
-
+    console.log(data, user)
     return (
         <form action={formAction}>
             <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-xs border p-4">
@@ -55,7 +56,7 @@ const page = (props: Props) => {
                 </div>
                 <div>
                     <label className="label">Ngày sinh</label>
-                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={data?.birthday || user.birthday} id="birthday" />
+                    <input type="date" className="input" placeholder="Điền ngày sinh" name="birthday" defaultValue={dayjs(data?.birthday || user.birthday).format("YYYY-MM-DD")} id="birthday" />
                     <p className='text-error'>{errors?.birthday}</p>
                 </div>
                 <div className="form-control">
@@ -70,7 +71,7 @@ const page = (props: Props) => {
                                 name="gender"
                                 value="true"
                                 className="radio radio-primary"
-                                defaultChecked={data?.gender === "true" || user.gender.toString() === "true"}
+                                defaultChecked={data?.gender === true || user.gender === true}
                             />
                             <span className="label-text">Nam</span>
                         </label>
@@ -81,7 +82,7 @@ const page = (props: Props) => {
                                 name="gender"
                                 value="false"
                                 className="radio radio-primary"
-                                defaultChecked={data?.gender === "false" || user.gender.toString() === "false"}
+                                defaultChecked={data?.gender === false || user.gender === false}
                             />
                             <span className="label-text">Nữ</span>
                         </label>
