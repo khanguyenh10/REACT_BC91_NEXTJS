@@ -65,6 +65,12 @@ const nextConfig: NextConfig = {
         hostname: "example.com",
         port: "",
         pathname: "**"
+      },
+      {
+        protocol: "https",
+        hostname: "airbnb-0dxt.onrender.com",
+        port: "",
+        pathname: "**"
       }
     ]
   },
